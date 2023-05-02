@@ -2,18 +2,17 @@ import React from "react";
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //import Axios from 'axios';
-import H from './pages/home.js'
-import Dashboard from "./components/Admin/pages/Dashboard";
-import Comments from "./components/Admin/pages/Comments";
-import Employees from "./components/Admin/pages/Employees";
-import Categories from "./components/Admin/pages/Categories";
-import Tickets from "./components/Admin/pages/Tickets";
-import Sidebar from "./components/Admin/Sidebar";
-import About from "./components/Admin/pages/About";
+import H from './App/pages/home'
 
-
-import Login from './components/Login'
-import Admin from './components/Admin/AdminPage.js'
+import Dashboard from "./App/pages/Admin/Dashboard";
+import Comments from "./App/pages/Admin/Comments";
+import Employees from "./App/pages/Admin/Employees";
+import Categories from "./App/pages/Admin/Categories";
+import Tickets from "./App/pages/Admin/Tickets";
+import About from "./App/pages/Admin/About";
+import Sidebar from "./App/components/Sidebar";
+import Login from './App/components/Login'
+import Admin from './App/pages/Admin/AdminPage'
 function App() {
 
   // learn withCredentials in Axios 
