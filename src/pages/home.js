@@ -1,9 +1,11 @@
 import React from 'react'
-import Body from '../components/body'
+import Registration from '../components/Registration'
 function home() {
     return (
         <>
-            <Body/>
+            
+            <Registration/>
+            
         </>
     )
 }

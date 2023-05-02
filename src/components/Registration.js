@@ -1,12 +1,10 @@
 import React from 'react'
 import '../assets/css/style.css';
 import signup from '../assets/images/signup-image.jpg'
-import signin from '../assets/images/signin-image.jpg'
-import b from '../assets/bootstrap-icons-1.10.4/facebook.svg'
 import userIcon from '../assets/bootstrap-icons-1.10.4/person.svg'
 import { Link } from 'react-router-dom';
 import Axois from 'axios';
-function body() {
+function registration() {
 
     function input()
     {
@@ -75,52 +73,13 @@ function body() {
                             </div>
                             <div class="signup-image">
                                 <figure><img src={signup} alt="sing up"></img></figure>
-                                <Link to="#" class="signup-image-link">I am already member</Link>
+                                <Link to="/login" class="signup-image-link">I am already member</Link>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Sing in  Form  */}
-                <div class="sign-in">
-                    <div class="container">
-                        <div class="signin-content">
-                            <div class="signin-image">
-                                <figure><img src={signin} alt="sing up "></img></figure>
-                                <Link to="#" class="signup-image-link">Create an account</Link>
-                            </div>
-
-                            <div class="signin-form">
-                                <h2 class="form-title">Sign up</h2>
-                                <div  class="register-form" id="login-form">
-                                    <div class="form-group">
-                                        <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                        <input type="text" name="your_name" id="your_name" placeholder="Your Name" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                        <input type="password" name="your_pass" id="your_pass" placeholder="Password" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                                        <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
-                                    </div>
-                                    <div class="form-group form-button">
-                                        <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" />
-                                    </div>
-                                </div>
-                                <div class="social-login">
-                                    <span class="social-label">Or login with</span>
-                                    <ul class="socials">
-                                        <li><Link  to="/facebook"><img src={b} alt="Bootstrap" width="32" height="32"></img> </Link></li>
-                                        
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
 
             </div>
             
@@ -128,4 +87,4 @@ function body() {
     )
 }
 
-export default body
+export default registration
