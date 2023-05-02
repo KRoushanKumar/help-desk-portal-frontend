@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import {
     FaBars,
     FaCommentAlt,
@@ -14,38 +15,38 @@ const Sidebar = ({children}) => {
 
     const menuItem = [
         {
-            path:"/dashboard",
+            path:"/Admin/dashboard",
             name:"Dashboard",
             icon:<FaTh/>
         },
         {
-            path:"/about",
+            path:"/Admin/about",
             name:"About",
             icon:<FaUserAlt/>
         },
         {
-            path:"/employees",
+            path:"/Admin/employees",
             name:"Employees",
             icon:<FaUsers/>
         },
         {
-            path:"/categories",
+            path:"/Admin/categories",
             name:"Categories",
             icon:<FaThList/>
         },
         {
-            path:"/tickets",
+            path:"/Admin/tickets",
             name:"Tickets",
             icon:<FaTicketAlt/>
         },
         {
-            path:"/comments",
+            path:"/Admin/comments",
             name:"Comments",
             icon:<FaCommentAlt/>
         },
     ]
     return (
-        <div className='container'>
+        <div className='admin_container'>
             <div style={{width: isOpen ? "200px" : "50px"}} className='sidebar'>
                  <div className='top_section'>
                     <h1 style={{display: isOpen ? "block" : "none"}} className='logo'>Admin</h1>

@@ -1,10 +1,14 @@
 import React from 'react'
 
+
 function admin() {
     return (
-        <div>
-            I am Admin.
-        </div>
+        <>
+            
+               <div>admin</div> 
+
+            
+        </>
     )
 }
 

@@ -3,9 +3,7 @@ import Registration from '../components/Registration'
 function home() {
     return (
         <>
-            
             <Registration/>
-            
         </>
     )
 }

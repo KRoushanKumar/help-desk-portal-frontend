@@ -3,7 +3,11 @@
   padding:0;
   text-decoration: none;
 }
-.container{
+/* .container{
+  display:flex;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+} */
+.admin_container{
   display:flex;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
