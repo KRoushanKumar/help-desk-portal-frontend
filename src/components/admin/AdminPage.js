@@ -5,7 +5,7 @@ function admin() {
     return (
         <>
             
-               <div>admin</div> 
+              
 
             
         </>

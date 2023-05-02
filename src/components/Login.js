@@ -5,21 +5,29 @@ import b from '../assets/bootstrap-icons-1.10.4/facebook.svg'
 import { Link,useNavigate  } from 'react-router-dom';
 import Axois from 'axios';
 function Login() {
+//const Login = () =>{
 
+    const navigate = useNavigate();
     // Capitilize function name
-    function Login()
+    //function Login()
+    const BtnLogin = ()=>
     {
         var userName = document.getElementById("userName").value;
         var password = document.getElementById("password").value;
         console.log(userName+"  "+password);
-        const navigate = useNavigate();
+        
         Axois.post('http://localhost:8080/api/authorization',{userName:userName,password:password})
         .then((response)=>{
+            console.log(" response "+response.data.id);
+            if(response.data.id===null){
+                alert("User Not Found!");
+              navigate('/');
+            }
             console.log(response.data.roles[0].name);
             if(response.data.roles[0].name==="Admin"){
              console.log('login successful')
-             sessionStorage.setItem('UserID', response.data.id)
-             sessionStorage.setItem('userName',response.data.userName)
+             //sessionStorage.setItem('UserID', response.data.id)
+             //sessionStorage.setItem('userName',response.data.userName)
              navigate('/Admin');
             }
             else
@@ -41,7 +49,7 @@ function Login() {
                             </div>
 
                             <div class="signin-form">
-                                <h2 class="form-title">Sign up</h2>
+                                <h2 class="form-title">Sign In</h2>
                                 <div  class="register-form" id="login-form">
                                     <div class="form-group">
                                         <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
@@ -56,7 +64,7 @@ function Login() {
                                         <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
                                     </div>
                                     <div class="form-group form-button">
-                                        <input type="submit"  id="signin" class="form-submit" value="submit" onClick={()=>(Login())} />
+                                        <input type="submit"  id="signin" class="form-submit" value="submit" onClick={()=>(BtnLogin())} />
                                     </div>
                                 </div>
                                 <div class="social-login">
@@ -75,5 +83,7 @@ function Login() {
         </>
     )
 }
+
+
 
 export default Login
