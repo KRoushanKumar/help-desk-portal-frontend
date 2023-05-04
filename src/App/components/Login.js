@@ -1,5 +1,5 @@
 import React from 'react'
-import signin from '../../Assets/images/signin-image.jpg'
+import signin from '../../assets/images/signin-image.jpg'
 //In react-router-dom v6 useHistory() is replaced by useNavigate().
 import { Link,useNavigate  } from 'react-router-dom';
 import Axois from 'axios';
