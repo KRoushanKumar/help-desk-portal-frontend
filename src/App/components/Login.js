@@ -29,6 +29,9 @@ function Login() {
              //sessionStorage.setItem('userName',response.data.userName)
              navigate('/Admin');
             }
+            else if(response.data.roles[0].name==="Employee"){
+                navigate('/Employee');
+            }
             else
             navigate('/');
 

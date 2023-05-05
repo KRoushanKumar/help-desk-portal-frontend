@@ -20,6 +20,7 @@ import AboutEmp from "./App/pages/Employees/AboutEmp";
 import CategoriesEmp from "./App/pages/Employees/CategoriesEmp";
 import RaiseComplaints from "./App/pages/Employees/RaiseComplaints";
 import TrackComplaints from "./App/pages/Employees/TrackComplaints";
+import AddEmployee from "./App/pages/Admin/AddEmployee";
 function App() {
 
   // learn withCredentials in Axios 
@@ -35,7 +36,9 @@ function App() {
     
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="about" element={<About />} />
-                    <Route path="employees" element={<Employees />} />
+                    <Route path="employees" element={<Employees />}>
+                        <Route path="addEmployee" element={<AddEmployee/>}/>
+                    </Route>
                     <Route path="categories" element={<Categories />} />
                     <Route path="tickets" element={<Tickets />} />
                     <Route path="comments" element={<Comments />} />
