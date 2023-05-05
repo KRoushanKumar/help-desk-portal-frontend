@@ -62,26 +62,29 @@ const Categories = () => {
     return (
 
         <div className='container m-auto'>
+
             <div className='row m-0'>
                 <div className='col-md-2 '>
-                    <button className='btn btn-success mt-2'>+Add Categories</button>
+                    <button className='btn btn-success mt-2' data-bs-toggle="modal" data-bs-target="#addCategoriesModal">+Add Categories</button>
                 </div>
                 <div className='col-md-2'>
-                    <button className='btn btn-success mt-2'>+Add SubCategories</button>
+                    <button className='btn btn-success mt-2' data-bs-toggle="modal" data-bs-target="#addSubCategoriesModal">+Add SubCategories</button>
                 </div>
                 <div className='col-md-2'>
-                    <button className='btn btn-success mt-2'>+Edit Categories</button>
+                    <button className='btn btn-success mt-2' data-bs-toggle="modal" data-bs-target="#editCategoriesModal">+Edit Categories</button>
                 </div>
                 <div className='col-md-2'>
-                    <button className='btn btn-success mt-2'>+Edit SubCategories</button>
+                    <button className='btn btn-success mt-2' data-bs-toggle="modal" data-bs-target="#editSubCategoriesModal">+Edit SubCategories</button>
                 </div>
             </div>
+
             <hr />
+
             <div className='row'>
                 <div className='col-sm-12'>
 
                     <div className='row mb-3 m-auto'>
-                    <h4 className='mt-3'>Search Tickets</h4>
+                        <h4 className='mt-3'>Search Tickets</h4>
                         <div className='form-group col-md-4 mt-1'>
 
                             <select name='categories' className='form-control' onChange={(e) => handleCategories(e)}>
@@ -149,6 +152,150 @@ const Categories = () => {
                 </main>
                 {/*Main layout*/}
             </div>
+
+
+            {/* Modal of Add categories */}
+            <div class="modal fade" id="addCategoriesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Categories</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div className='form' id="addCateForm">
+                                <div class="form-group">
+                                    <input name="" class="form-control" placeholder="Enter Category  " type="text" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" form="addCateForm" class="btn btn-primary" >Add </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Modal of Add Subcategories */}
+            <div class="modal fade" id="addSubCategoriesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add SubCategories</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div className='form' id="addCateForm">
+                                <div class="form-group">
+                                    <select name='categories' className='form-control' onChange={(e) => handleCategories(e)}>
+                                        <option>--Select Categories--</option>
+                                        {
+                                            categories.map((categoryget) => (
+                                                <option key={categoryget.cateId} value={categoryget.cateId} >{categoryget.cateName}</option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input name="" class="form-control" placeholder="Enter SubCategory  " type="text" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" form="addCateForm" class="btn btn-primary" >Add </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Modal of edit categories */}
+            <div class="modal fade" id="editCategoriesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Categories</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div className='form' id="addCateForm">
+                                <div class="form-group">
+                                    <select name='categories' className='form-control' onChange={(e) => handleCategories(e)}>
+                                        <option>--Select Categories--</option>
+                                        {
+                                            categories.map((categoryget) => (
+                                                <option key={categoryget.cateId} value={categoryget.cateId} >{categoryget.cateName}</option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input name="" class="form-control" placeholder="Rename Category  " type="text" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" form="addCateForm" class="btn btn-primary" >Edit </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Modal of edit SubCategoriesModal */}
+            <div class="modal fade" id="editSubCategoriesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit SubCategories</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div className='form' id="addCateForm">
+                                <div class="form-group">
+                                    <select name='categories' className='form-control' onChange={(e) => handleCategories(e)}>
+                                        <option>--Select Categories--</option>
+                                        {
+                                            categories.map((categoryget) => (
+                                                <option key={categoryget.cateId} value={categoryget.cateId} >{categoryget.cateName}</option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select name='state' className='form-control'>
+                                        <option>--Select subcategories--</option>
+                                        {
+                                            st.map(
+                                                (resst) => (
+                                                    <option key={resst.subCateId} value={resst.subCateId}>{resst.subCateName}</option>
+                                                )
+                                            )
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input name="" class="form-control" placeholder="Rename SubCategory  " type="text" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" form="addCateForm" class="btn btn-primary" >Edit </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     );

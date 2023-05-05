@@ -8,7 +8,7 @@ const addEmployee = () => {
 
                             <h4 class="card-title mb-4 mt-1  p-2 text-white text-center rounded">Add  Employee</h4>
                             <hr style={{backgroundColor:"red"}}/>
-                            <div >
+                            <div className="form">
                                 <div class="form-group">
                                     <input name="" class="form-control" placeholder="User name" type="text" required/>
                                 </div>
