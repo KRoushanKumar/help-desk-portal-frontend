@@ -6,15 +6,15 @@ const Tickets = () => {
     return (
         <div>
                 { /*Main layout */}
-                <main style={{ marginTop: "58px" }} className=''>
-                    <div class="container-fluid pt-4 m-4">
-                        <div className='row border p-2'>
-                            <h5 className='text-primary'>All tickets</h5>
+                <main style={{ marginTop: "58px" }} className='mr-3'>
+                    <div class="container-fluid  m-4 ">
+                        <div className='row border p-2  bg-primary rounded'>
+                            <h5 className='text-white'>All tickets</h5>
                         </div>
                         <div className='row border'>
                             <div class="container-fluid">
                                 <table class="table">
-                                    <thead>
+                                    <thead className='text-info '>
                                         <tr>
                                             <th>REQUESTER</th>
                                             <th>SUBJECT</th>
