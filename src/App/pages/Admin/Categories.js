@@ -60,48 +60,67 @@ const Categories = () => {
     }, [])
 
     return (
-        
-            <div className='container m-auto'>
-                <div className='row'>
-                    <div className='col-sm-12'>
 
-                        <div className='row mb-3 m-auto'>
-                            <div className='form-group col-md-4 mt-4'>
+        <div className='container m-auto'>
+            <div className='row m-0'>
+                <div className='col-md-2 '>
+                    <button className='btn btn-success mt-2'>+Add Categories</button>
+                </div>
+                <div className='col-md-2'>
+                    <button className='btn btn-success mt-2'>+Add SubCategories</button>
+                </div>
+                <div className='col-md-2'>
+                    <button className='btn btn-success mt-2'>+Edit Categories</button>
+                </div>
+                <div className='col-md-2'>
+                    <button className='btn btn-success mt-2'>+Edit SubCategories</button>
+                </div>
+            </div>
+            <hr />
+            <div className='row'>
+                <div className='col-sm-12'>
 
-                                <select name='categories' className='form-control' onChange={(e) => handleCategories(e)}>
-                                    <option>--Select Categories--</option>
-                                    {
-                                        categories.map((categoryget) => (
-                                            <option key={categoryget.cateId} value={categoryget.cateId} >{categoryget.cateName}</option>
-                                        ))
-                                    }
-                                </select>
-                            </div>
+                    <div className='row mb-3 m-auto'>
+                    <h4 className='mt-3'>Search Tickets</h4>
+                        <div className='form-group col-md-4 mt-1'>
 
-                            <div className='form-group col-md-4 mt-4'>
-
-                                <select name='state' className='form-control'>
-                                    <option>--Select subcategories--</option>
-                                    {
-                                        st.map(
-                                            (resst) => (
-                                                <option key={resst.subCateId} value={resst.subCateId}>{resst.subCateName}</option>
-                                            )
-                                        )
-                                    }
-                                </select>
-                            </div>
-
-                            <div className='form-group col-md-2 mt-3'>
-                                <button className='btn btn-success mt-2'><i class="bi bi-search"></i></button>
-                            </div>
-
+                            <select name='categories' className='form-control' onChange={(e) => handleCategories(e)}>
+                                <option>--Select Categories--</option>
+                                {
+                                    categories.map((categoryget) => (
+                                        <option key={categoryget.cateId} value={categoryget.cateId} >{categoryget.cateName}</option>
+                                    ))
+                                }
+                            </select>
                         </div>
-                    </div>
 
+                        <div className='form-group col-md-4 mt-1'>
+
+                            <select name='state' className='form-control'>
+                                <option>--Select subcategories--</option>
+                                {
+                                    st.map(
+                                        (resst) => (
+                                            <option key={resst.subCateId} value={resst.subCateId}>{resst.subCateName}</option>
+                                        )
+                                    )
+                                }
+                            </select>
+                        </div>
+
+                        <div className='form-group col-md-2 '>
+                            <button className='btn btn-success mt-2'><i class="bi bi-search"></i></button>
+                        </div>
+
+
+
+
+                    </div>
                 </div>
 
-                <div >
+            </div>
+
+            <div >
                 { /*Main layout */}
                 <main style={{ marginTop: "10px" }} className='mr-3'>
                     <div class="container-fluid   ">
@@ -121,42 +140,7 @@ const Categories = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Alok</td>
-                                            <td>Spam</td>
-                                            <td>Unassigned</td>
-                                            <td><span class="badge rounded-pill bg-primary">Open</span></td>
-                                            <td>32 jan 2023</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>Alok</td>
-                                            <td>Spam</td>
-                                            <td>Unassigned</td>
-                                            <td><span class="badge rounded-pill bg-primary">Open</span></td>
-                                            <td>32 jan 2023</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alok</td>
-                                            <td>Spam</td>
-                                            <td>Unassigned</td>
-                                            <td><span class="badge rounded-pill bg-primary">Open</span></td>
-                                            <td>32 jan 2023</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alok</td>
-                                            <td>Spam</td>
-                                            <td>Unassigned</td>
-                                            <td><span class="badge rounded-pill bg-primary">Open</span></td>
-                                            <td>32 jan 2023</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alok</td>
-                                            <td>Spam</td>
-                                            <td>Unassigned</td>
-                                            <td><span class="badge rounded-pill bg-primary">Open</span></td>
-                                            <td>32 jan 2023</td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -164,9 +148,9 @@ const Categories = () => {
                     </div>
                 </main>
                 {/*Main layout*/}
-                </div>
             </div>
-      
+        </div>
+
     );
 };
 
