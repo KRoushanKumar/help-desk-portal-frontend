@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function AddEmployee() {
     return (
@@ -29,9 +30,14 @@ function AddEmployee() {
                                         <input class="form-control" placeholder="password" type="password" required />
                                     </div>
 
-                                    <div class="form-group text-center">
-                                        <button type="submit" class="btn btn-success btn-block"> Add  </button>
-                                    </div>
+                                    
+                                       <button type="submit" class="btn btn-success btn-block"> Add  </button>
+                                    
+                                    <Link to="/Admin/employees">
+                                        
+                                        <button type="submit" class="btn btn-success btn-block"> Close  </button>
+                                        
+                                    </Link>
                                 </div>
                             </article>
                         </div>

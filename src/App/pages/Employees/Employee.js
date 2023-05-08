@@ -1,7 +1,20 @@
 import React from 'react'
 import SidebarEmployees from "../../components/SidebarEmployees";
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 function Employee() {
+    const navigate = useNavigate();
+
+    if(!sessionStorage.getItem('UserID'))
+    {
+        navigate('/')
+    }
+    
+    const Logout = ()=>
+    {
+        sessionStorage.clear()
+        navigate('/')
+    }
+
     return (
         <>
             <header>

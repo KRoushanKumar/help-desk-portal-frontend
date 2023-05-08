@@ -1,8 +1,22 @@
 import React from 'react'
 import Sidebar from '../../components/Sidebar'
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
-function admin() {
+function Admin() {
+
+    const navigate = useNavigate();
+
+    if(!sessionStorage.getItem('UserID'))
+    {
+        navigate('/')
+    }
+    
+    const Logout = ()=>
+    {
+        sessionStorage.clear()
+        navigate('/')
+    }
+
     return (
         <>
             <header>
@@ -24,4 +38,4 @@ function admin() {
     )
 }
 
-export default admin
+export default Admin

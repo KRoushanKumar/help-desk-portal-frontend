@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { Link, Outlet } from 'react-router-dom';
 
 const Employees = () => {
 
@@ -13,13 +14,18 @@ const Employees = () => {
     //             alert("")
     //     });
     // }
-
-    return (                                                
+    
+    return (
         <div className='container'>
             <h2 className='text-center'>Employees List</h2>
-            <div style={{ marginBottom: "10px" }}>
-                <button className='btn btn-primary' >Add Employee</button>
-            </div>
+
+            <Link to="/Admin/employees/addEmployee">
+                <div style={{ marginBottom: "10px" }}>
+                    <button className='btn btn-primary'  >Add Employee</button>
+                </div>
+            </Link>
+
+            <Outlet />
             <div className='row'>
                 <table className='table table-striped table-bordered'>
                     <thead>

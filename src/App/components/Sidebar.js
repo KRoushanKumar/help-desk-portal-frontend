@@ -30,7 +30,12 @@ const Sidebar = ({children}) => {
             icon:<FaUsers/>
         },
         {
-            path:"/Admin/categories",
+            path:"/Admin/searchTickets",
+            name:"Search Ticket",
+            icon:<FaThList/>
+        },
+        {
+            path:"/Admin/categoriesPage",
             name:"Categories",
             icon:<FaThList/>
         },

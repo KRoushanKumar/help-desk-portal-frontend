@@ -3,8 +3,22 @@ import userPic from "../../../Assets/images/userimage.jpg"
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from 'react-router-dom';
 
 const About = () => {
+    const navigate = useNavigate();
+
+    if(!sessionStorage.getItem('UserID'))
+    {
+        navigate('/')
+    }
+    
+    const Logout = ()=>
+    {
+        sessionStorage.clear()
+        navigate('/')
+    }
+
     return (
         <>
             <div className='container emp-profile'>
@@ -64,7 +78,7 @@ const About = () => {
 
                         <div className='col-md-3'>
                             <button className='btn btn-info mt-5'>Edit Profile</button><br/>
-                            <button className='btn btn-danger mt-2'>Log Out</button>
+                            <button className='btn btn-danger mt-2' onClick={()=>(Logout())}>Log Out</button>
                         </div>
 
                     </div>
