@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import axios from "../../../../Assets/axios";
+import axios from "../../../../assets/axios";
 
 
 const ViewSubCategories=(props)=>{

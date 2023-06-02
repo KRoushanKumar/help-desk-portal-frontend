@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react";
- import axios from "../../../../Assets/axios";
+ import axios from "../../../../assets/axios";
 
 const EditCategory = (props) => {
     // const cateId=useParams("cateId");

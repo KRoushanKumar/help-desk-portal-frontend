@@ -1,4 +1,4 @@
-import axios from "../../../../Assets/axios";
+import axios from "../../../../assets/axios";
 
 
 const AddSubCategory=(props)=>{
