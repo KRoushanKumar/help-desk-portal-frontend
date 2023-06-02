@@ -4,7 +4,7 @@ import signin from '../../assets/images/signin-image.jpg'
 import { Link,useNavigate  } from 'react-router-dom';
 import Axois from 'axios';
 function Login() {
-//const Login = () =>{
+
 
     const navigate = useNavigate();
     // Capitilize function name
@@ -20,14 +20,19 @@ function Login() {
             console.log(" response "+response.data.id);
             if(response.data.id===null){
                 alert("User Not Found!");
-              navigate('/');
+             // navigate('/');
             }
             console.log(response.data.roles[0].name);
             if(response.data.roles[0].name==="Admin"){
              console.log('login successful')
-             //sessionStorage.setItem('UserID', response.data.id)
-             //sessionStorage.setItem('userName',response.data.userName)
+             sessionStorage.setItem('UserID', response.data.id)
+             sessionStorage.setItem('userName',response.data.userName)
              navigate('/Admin');
+            }
+            else if(response.data.roles[0].name==="Employee"){
+                sessionStorage.setItem('UserID', response.data.id)
+                sessionStorage.setItem('userName',response.data.userName)
+                navigate('/Employee');
             }
             else
             navigate('/');

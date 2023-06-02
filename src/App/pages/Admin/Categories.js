@@ -29,7 +29,7 @@ const Categories = () => {
 
     const getCategoriesApi = async () => {
         try {
-            const res = await axios.get("/categories");
+            const res = await axios.get("/allTicketCategories");
             setCategories(res.data);
         } catch (error) {
             setIsError(error.message);
@@ -67,15 +67,6 @@ const Categories = () => {
                 <div className='col-md-2 '>
                     <button className='btn btn-success mt-2' data-bs-toggle="modal" data-bs-target="#addCategoriesModal">+Add Categories</button>
                 </div>
-                <div className='col-md-2'>
-                    <button className='btn btn-success mt-2' data-bs-toggle="modal" data-bs-target="#addSubCategoriesModal">+Add SubCategories</button>
-                </div>
-                <div className='col-md-2'>
-                    <button className='btn btn-success mt-2' data-bs-toggle="modal" data-bs-target="#editCategoriesModal">+Edit Categories</button>
-                </div>
-                <div className='col-md-2'>
-                    <button className='btn btn-success mt-2' data-bs-toggle="modal" data-bs-target="#editSubCategoriesModal">+Edit SubCategories</button>
-                </div>
             </div>
 
             <hr />
@@ -91,7 +82,7 @@ const Categories = () => {
                                 <option>--Select Categories--</option>
                                 {
                                     categories.map((categoryget) => (
-                                        <option key={categoryget.cateId} value={categoryget.cateId} >{categoryget.cateName}</option>
+                                        <option key={categoryget.id} value={categoryget.id} >{categoryget.name}</option>
                                     ))
                                 }
                             </select>
@@ -102,11 +93,9 @@ const Categories = () => {
                             <select name='state' className='form-control'>
                                 <option>--Select subcategories--</option>
                                 {
-                                    st.map(
-                                        (resst) => (
-                                            <option key={resst.subCateId} value={resst.subCateId}>{resst.subCateName}</option>
-                                        )
-                                    )
+                                    categories.map((categoryget) => (
+                                        <option key={categoryget.ticketSubCategeries.id} value={categoryget.ticketSubCategeries.id} >{categoryget.ticketSubCategeries.name}</option>
+                                    ))
                                 }
                             </select>
                         </div>
