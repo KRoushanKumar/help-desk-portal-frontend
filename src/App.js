@@ -22,6 +22,7 @@ import RaiseComplaints from "./App/pages/Employees/RaiseComplaints";
 import TrackComplaints from "./App/pages/Employees/TrackComplaints";
 import AddEmployee from "./App/pages/Admin/AddEmployee";
 import CategoriesPage from "./App/pages/Admin/CategorySubCategory/CategoriesPage";
+import MyComplaints from "./App/pages/Employees/MyComplaints"
 function App() {
 
   // learn withCredentials in Axios 
@@ -57,6 +58,7 @@ function App() {
                     <Route path="categories" element={<CategoriesEmp />} />
                     <Route path="raisecomplaints" element={<RaiseComplaints />} />
                     <Route path="trackcomplaints" element={<TrackComplaints />} />
+                    <Route path="mycomplaints" element={<MyComplaints/>}/>
                 </Route>
           </Routes>
       </Router>
