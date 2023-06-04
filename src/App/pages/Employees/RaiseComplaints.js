@@ -71,9 +71,14 @@ const RaiseComplaints = () => {
                 <div className='form-field col-lg-6'>
 
                     <select name='state' className='form-control' onChange={(e) => handleHidden(e)} >
-                        <option>--Select SubCategories--</option>
-                        <option value={"tg"}>2</option>
-                        <option value={"wfh"}>wfh</option>
+                    <option>--Select SubCategories--</option>
+                                {
+                                    st.map(
+                                        (resst) => (
+                                            <option key={resst.id} value={resst.id}>{resst.name}</option>
+                                        )
+                                    )
+                                }
 
                     </select>
                 </div>
