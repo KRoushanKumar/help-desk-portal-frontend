@@ -8,7 +8,7 @@ const Categories = () => {
 
 
 
-    
+
     useEffect(() => {
         const getCategoriesApi = async () => {
             try {
@@ -31,8 +31,8 @@ const Categories = () => {
     }
 
 
-    
-   useEffect(() => {
+
+    useEffect(() => {
         const getSubCategoriesApi = async () => {
             try {
                 const res = await axios.get(`/subTickCatgyByTicCatgyId/${categoriesid}`);
@@ -41,14 +41,14 @@ const Categories = () => {
                 setIsError(error.message);
             }
         }
-       getSubCategoriesApi();
-   }, [categoriesid]);
+        getSubCategoriesApi();
+    }, [categoriesid]);
 
     return (
 
         <div className='container m-auto'>
 
-            
+
 
             <div className='row'>
                 <div className='col-sm-12'>
@@ -57,7 +57,7 @@ const Categories = () => {
                         <h4 className='mt-3'>Search Tickets</h4>
                         <div className='form-group col-md-4 mt-1'>
 
-                            <select name='categories' className='form-control'  onChange={(e) => handleCategories(e)}>
+                            <select name='categories' className='form-control' onChange={(e) => handleCategories(e)}>
                                 <option>--Select Categories--</option>
                                 {
                                     categories.map((categoryget) => (
@@ -69,7 +69,7 @@ const Categories = () => {
 
                         <div className='form-group col-md-4 mt-1'>
 
-                            <select  name='state' className='form-control'>
+                            <select name='state' className='form-control'>
                                 <option>--Select SubCategories--</option>
                                 {
                                     st.map(
@@ -124,7 +124,7 @@ const Categories = () => {
             </div>
 
 
-            
+
 
 
         </div>
