@@ -73,4 +73,9 @@
     width:200px;
     cursor: pointer;
   }
-  
+  #hidden1{
+    display:none;
+  }
+  #hidden2{
+    display: none;
+  }

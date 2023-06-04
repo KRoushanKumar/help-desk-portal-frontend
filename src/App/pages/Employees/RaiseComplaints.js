@@ -32,6 +32,12 @@ const RaiseComplaints = () => {
         //console.log(getcoutryid);
     }
 
+    const handleHidden = (e) => {
+        if (e.target.value === "wfh") {
+            document.getElementById("hidden1").style.display = "block";
+            document.getElementById("hidden2").style.display = "block";
+        }
+    }
 
 
     useEffect(() => {
@@ -50,9 +56,9 @@ const RaiseComplaints = () => {
         <div class="get-in-touch p-5">
             <h1 class="title">Raise Query</h1>
             <form class="contact-form row">
-                
+
                 <div className='form-field col-lg-6'>
-                
+
                     <select name='categories' className='form-control' onChange={(e) => handleCategories(e)}>
                         <option>--Select Categories--</option>
                         {
@@ -63,30 +69,36 @@ const RaiseComplaints = () => {
                     </select>
                 </div>
                 <div className='form-field col-lg-6'>
-                
-                    <select name='state' className='form-control'>
+
+                    <select name='state' className='form-control' onChange={(e) => handleHidden(e)} >
                         <option>--Select SubCategories--</option>
-                        {
-                            st.map(
-                                (resst) => (
-                                    <option key={resst.id} value={resst.id}>{resst.name}</option>
-                                )
-                            )
-                        }
+                        <option value={"tg"}>2</option>
+                        <option value={"wfh"}>wfh</option>
+
                     </select>
                 </div>
                 <div class="form-field col-lg-6">
                     <input id="title" class="input-text js-input" type="text" required placeholder='Title' />
-                    
+
                 </div>
                 <div class="form-field col-lg-6 ">
-                    <input id="email" class="input-text js-input" type="date" value="" required onfocus="(this.type='date')" placeholder='Due-date'/>
-                   <span class="text-primary" style={{fontWeight:100}}>Due-Date </span>
+                    <input id="email" class="input-text js-input" type="date" value="" required onfocus="(this.type='date')" placeholder='Due-date' />
+                    <span class="text-primary" style={{ fontWeight: 100 }}>Due-Date </span>
                 </div>
+
+                <div class="form-field col-lg-6 " id='hidden1'>
+                    <input id="start_date" class="input-text js-input" type="date" required placeholder='Title' />
+                    <span class="text-primary" style={{ fontWeight: 100 }}>Start-Date </span>
+                </div>
+                <div class="form-field col-lg-6  " id='hidden2'>
+                    <input id="end_date" class="input-text js-input" type="date" value="" required onfocus="(this.type='date')" placeholder='Due-date' />
+                    <span class="text-primary" style={{ fontWeight: 100 }}>End-Date </span>
+                </div>
+
                 <div class="form-field col-lg-12">
-                
+
                     <textarea id="desc" class="input-text js-input " type="text" required placeholder='Description'></textarea>
-                    
+
                 </div>
                 <div class="form-field col-lg-12">
                     <input class="submit-btn" type="submit" value="Submit" />
