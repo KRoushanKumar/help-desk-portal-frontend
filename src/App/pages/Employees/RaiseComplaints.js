@@ -36,6 +36,9 @@ const RaiseComplaints = () => {
         if (e.target.value === "wfh") {
             document.getElementById("hidden1").style.display = "block";
             document.getElementById("hidden2").style.display = "block";
+        }else{
+            document.getElementById("hidden1").style.display = "none";
+            document.getElementById("hidden2").style.display = "none";
         }
     }
 
@@ -72,13 +75,9 @@ const RaiseComplaints = () => {
 
                     <select name='state' className='form-control' onChange={(e) => handleHidden(e)} >
                     <option>--Select SubCategories--</option>
-                                {
-                                    st.map(
-                                        (resst) => (
-                                            <option key={resst.id} value={resst.id}>{resst.name}</option>
-                                        )
-                                    )
-                                }
+                              <option value={"wfh"}>wfh</option>
+                              <option value={"random"}>random</option>
+
 
                     </select>
                 </div>
