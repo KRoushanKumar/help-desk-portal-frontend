@@ -32,15 +32,7 @@ const RaiseComplaints = () => {
         //console.log(getcoutryid);
     }
 
-    const handleHidden = (e) => {
-        if (e.target.value === "wfh") {
-            document.getElementById("hidden1").style.display = "block";
-            document.getElementById("hidden2").style.display = "block";
-        }else{
-            document.getElementById("hidden1").style.display = "none";
-            document.getElementById("hidden2").style.display = "none";
-        }
-    }
+   
 
 
     useEffect(() => {
@@ -74,10 +66,10 @@ const RaiseComplaints = () => {
                 <div className='form-field col-lg-6'>
 
                     <select name='state' className='form-control' onChange={(e) => handleHidden(e)} >
-                    <option>--Select SubCategories--</option>
-                              <option value={"wfh"}>wfh</option>
-                              <option value={"random"}>random</option>
+                        <option>--Select SubCategories--</option>
 
+                        <option value={"wfh"}>wfh</option>
+                        <option value={"random"}>random2</option>
 
                     </select>
                 </div>
@@ -85,16 +77,13 @@ const RaiseComplaints = () => {
                     <input id="title" class="input-text js-input" type="text" required placeholder='Title' />
 
                 </div>
-                <div class="form-field col-lg-6 ">
-                    <input id="email" class="input-text js-input" type="date" value="" required onfocus="(this.type='date')" placeholder='Due-date' />
-                    <span class="text-primary" style={{ fontWeight: 100 }}>Due-Date </span>
-                </div>
+               
 
-                <div class="form-field col-lg-6 " id='hidden1'>
+                <div class="form-field col-lg-6 ">
                     <input id="start_date" class="input-text js-input" type="date" required placeholder='Title' />
                     <span class="text-primary" style={{ fontWeight: 100 }}>Start-Date </span>
                 </div>
-                <div class="form-field col-lg-6  " id='hidden2'>
+                <div class="form-field col-lg-6  " >
                     <input id="end_date" class="input-text js-input" type="date" value="" required onfocus="(this.type='date')" placeholder='Due-date' />
                     <span class="text-primary" style={{ fontWeight: 100 }}>End-Date </span>
                 </div>

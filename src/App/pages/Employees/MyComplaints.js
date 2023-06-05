@@ -9,7 +9,7 @@ const MyComplaints = () => {
                 <table class="table table-hover">
                     <thead class="bg-dark text-light" >
                         <tr>
-                            <th>Id</th>
+                            <th>ticket Id</th>
                             
                             <th>categoory</th>
                             <th>subcategory</th>
@@ -30,6 +30,9 @@ const MyComplaints = () => {
                             <td>high</td>
                             <td>new</td>
                             <td>12-01-2023</td>
+                            <td><button ></button></td>
+                            <td></td>
+                            <td></td>
                         </tr>   
                         <tr>
                             <td>2</td>

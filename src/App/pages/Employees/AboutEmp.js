@@ -31,7 +31,7 @@ const AboutEmp = () => {
                             </div>
                         </div>
 
-                        <div className='col-md-5'>
+                        <div className='col-md-5' >
                             <div className='profile-head mt-4'>
                                 <h3>Roushan Kumar</h3>
                                 {/* role */}
