@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "../../../assets/css/raisecomplaint.css"
-import axios from "../../../assets/axios"
+import axios from '../../../assets/axios'
 const RaiseComplaints = () => {
-
     const [categories, setCategories] = useState([]);
     const [categoriesid, setCategoriesid] = useState(0);
     const [st, setSt] = useState([]);
@@ -25,14 +24,13 @@ const RaiseComplaints = () => {
 
 
     const handleCategories = (event) => {
-        const getcoutryid = event.target.value;
-        console.log(getcoutryid);
-        setCategoriesid(getcoutryid);
+        const getCategoryId = event.target.value;
+        console.log(getCategoryId);
+        setCategoriesid(getCategoryId);
         event.preventDefault();
-        //console.log(getcoutryid);
+        //console.log(getCategoryId);
     }
 
-   
 
 
     useEffect(() => {
@@ -65,11 +63,17 @@ const RaiseComplaints = () => {
                 </div>
                 <div className='form-field col-lg-6'>
 
-                    <select name='state' className='form-control' onChange={(e) => handleHidden(e)} >
+                    <select name='state' className='form-control'  >
                         <option>--Select SubCategories--</option>
-
-                        <option value={"wfh"}>wfh</option>
-                        <option value={"random"}>random2</option>
+                       
+                                {
+                                    st.map(
+                                        (resst) => (
+                                            <option key={resst.id} value={resst.id}>{resst.name}</option>
+                                        )
+                                    )
+                                }
+                        
 
                     </select>
                 </div>

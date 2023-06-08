@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import axios from "../../../assets/axios"
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { Link, Outlet } from 'react-router-dom';
 
 const Employees = () => {
+    const [isError, setIsError] = useState("");
+    const [employees,setEmployees] =[];
+  const getAllEmployee=async()=>{
+    try{
+        const res = await axios.get(`/getAllEmployees/${sessionStorage.getItem('UserID')}`);
+        setEmployees(res.data);
+        console.log('working');
+    }catch(error){
+        setIsError(error.message);
+        console.log('error aa gaya bhago');
+    }
+  }
 
-
-    // function AddEmployee(adminId) {
-    //     Axios.post(`http://localhost:8080/api/AddEmployee/${adminId}`,{data:data}).then((res) => {
-    //         if (res.data)
-    //             alert("")
-    //     });
-    // }
+   useEffect(()=>{
+    getAllEmployee();
+   },[]);
     
     return (
         <div className='container'>
@@ -39,14 +47,20 @@ const Employees = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Alok</td>
-                            <td>Kumar</td>
-                            <td>alok@gmail.com</td>
-                            <td>alok21</td>
+                           {
+                            employees?.map((employee)=>(
+                                <>
+                             <td>{employee.firstName}</td>
+                            <td>{employee.lastName}</td>
+                            <td>{employee.email}</td>
+                            <td>{employee.userName}</td>
                             <td>
                                 <button style={{ marginRight: "10px" }} className='btn btn-info'>Update</button>
                                 <button className='btn btn-danger'>Delete</button>
                             </td>
+                            </>
+                            ))
+                           }
                         </tr>
                     </tbody>
                 </table>
