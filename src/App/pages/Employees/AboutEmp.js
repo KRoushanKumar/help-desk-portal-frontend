@@ -7,33 +7,33 @@ import { useNavigate } from 'react-router-dom';
 import axios from "../../../assets/axios"
 
 const AboutEmp = () => {
-    const [empData, setEmpData] = ("");
+    const [empData, setEmpData] = useState([]);
     const [isError, setIsError] = useState("");
     const empId = sessionStorage.getItem("UserID");
     const empName = sessionStorage.getItem("userName");
     const navigate = useNavigate();
     // console.log("Navigated to about emp page");
-    console.log(empId);
-    console.log(empName);
 
 
 
-    if (!sessionStorage.getItem('UserID')) {
-        console.log("user id")
-        console.log(sessionStorage.getItem('UserID'));
-        navigate('/')
-    }
+
+    // if (!sessionStorage.getItem('UserID')) {
+    //     console.log("user id")
+    //     console.log(sessionStorage.getItem('UserID'));
+    //     navigate('/')
+    // }
 
     const Logout = () => {
         sessionStorage.clear()
         navigate('/')
     }
 
-    const getEmployeeApi = async () => {
+    const getEmployeeApi = async() => {
         try {
             const res = await axios.get(`/getUserByUserId/${sessionStorage.getItem('UserID')}`);
             setEmpData(res.data);
             console.log("working");
+            console.log(res.data);
         } catch (error) {
             setIsError(error.message);
             console.log("error kaha se aa rha");
@@ -42,68 +42,70 @@ const AboutEmp = () => {
 
     useEffect(
         () => {
+            console.log("calling getEmployeeApi function");
             getEmployeeApi();
         }, [])
 
     return (
-        <div className='container emp-profile'>
-            <div>
-                <div className='row'>
+        <div className='container m-auto  mt-5 emp-profile p-5 ' style={{boxShadow:"2px 2px  black"}}>
+                <div className='row p-5'>
                     <div className='col-md-4'>
                         <div className='profile-img'>
                             <img src={userPic} alt='user pic' />
+                            <h5 className='text-center'>Employee</h5>
                         </div>
                     </div>
 
                     <div className='col-md-5' >
-                        <div className='profile-head mt-4'>
-                            {
-                                empData ?.map((employeeData) =>
-                                (<>
-                                  <h3>{employeeData.firstName} {employeeData.lastName}</h3>
-                            
-                                    <h5>Employee</h5>
+                    {
+                             
+                             empData.map((employeeData)=>(   <div className='profile-head mt-4'>
+                          
+                                        <h3>{employeeData.firstName}{employeeData.lastName}</h3>
 
-                                    <div className='row mt-3'>
-                                        <div className='col-md-3'>
-                                            <h6>User ID : </h6>
-                                        </div>
-                                        <div className='col-md-9'>
-                                            <p>{employeeData.id}</p>
-                                        </div>
-                                    </div>
+                                      
 
-                                    <div className='row mt-2'>
-                                        <div className='col-md-3'>
-                                            <h6>User Name : </h6>
+                                        <div className='row mt-3'>
+                                            <div className='col-md-3'>
+                                                <h6>User ID : </h6>
+                                            </div>
+                                            <div className='col-md-9'>
+                                                <p>{employeeData.id}</p>
+                                            </div>
                                         </div>
-                                        <div className='col-md-9'>
-                                            <p>{employeeData.userName}</p>
-                                        </div>
-                                    </div>
 
-                                    <div className='row mt-2'>
-                                        <div className='col-md-3'>
-                                            <h6>Full Name : </h6>
+                                        <div className='row mt-2'>
+                                            <div className='col-md-3'>
+                                                <h6>User Name : </h6>
+                                            </div>
+                                            <div className='col-md-9'>
+                                                <p>{employeeData.userName}</p>
+                                            </div>
                                         </div>
-                                        <div className='col-md-9'>
-                                            <p>{employeeData.firstName} {employeeData.lastName}</p>
-                                        </div>
-                                    </div>
 
-                                    <div className='row mt-2'>
-                                        <div className='col-md-3'>
-                                            <h6>Email ID : </h6>
+                                        <div className='row mt-2'>
+                                            <div className='col-md-3'>
+                                                <h6>Full Name : </h6>
+                                            </div>
+                                            <div className='col-md-9'>
+                                                <p>{employeeData.firstName}{employeeData.lastName}</p>
+                                            </div>
                                         </div>
-                                        <div className='col-md-9'>
-                                            <p>{employeeData.email}</p>
+
+                                        <div className='row mt-2'>
+                                            <div className='col-md-3'>
+                                                <h6>Email ID : </h6>
+                                            </div>
+                                            <div className='col-md-9'>
+                                                <p>{employeeData.email}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    </>
-                              ))
-                        }
+                                    
+                                   
+                            <div className='btn-danger'>{isError}</div>
 
                         </div>
+                    ))}
                     </div>
 
                     <div className='col-md-3'>
@@ -136,8 +138,6 @@ const AboutEmp = () => {
                     </div>
 
                 </div>
-
-            </div>
         </div>
 
     );

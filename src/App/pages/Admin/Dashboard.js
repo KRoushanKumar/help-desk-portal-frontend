@@ -5,12 +5,12 @@ const Dashboard = () => {
 
     return (
         <>
-            <div class="container m-5">
+            <div class="container m-auto mt-5 p-5" >
                 {/* <!-- Content Wrapper. Contains page content --> */}
                 <div class="">
                     {/* <!-- Content Header (Page header) --> */}
 
-                    <h1>
+                    <h1 className='bg-info p-2 text-center text-white'>
                         Admin Dashboard
                     </h1>
                     <ol class="breadcrumb">
@@ -63,6 +63,34 @@ const Dashboard = () => {
                             </div>
                         </div>
                         {/* <!-- ./col --> */}
+                               {/* <!-- ./col --> */}
+                            <div class="col-lg-4 col-xs-6 mt-3 ">
+                            {/* <!-- small box --> */}
+                            <div class="small-box bg-dark p-5">
+                                <div class="inner">
+                                    <h3>44</h3>
+                                    <p>Complaints Solve</p>
+                                </div>
+                                <div class="icon ">
+                                    <i class="bi bi-check2-circle  float-end"></i>
+                                </div>
+                                <a href="#" class="">More info <i class="bi bi-forward"></i></a>
+                            </div>
+                        </div>
+                               {/* <!-- ./col --> */}
+                             <div class="col-lg-4 col-xs-6 mt-3 ">
+                            {/* <!-- small box --> */}
+                            <div class="small-box bg-dark p-5">
+                                <div class="inner">
+                                    <h3>44</h3>
+                                    <p>Complaints Solve</p>
+                                </div>
+                                <div class="icon ">
+                                    <i class="bi bi-check2-circle  float-end"></i>
+                                </div>
+                                <a href="#" class="">More info <i class="bi bi-forward"></i></a>
+                            </div>
+                        </div>
                     </div>
                     {/* <!-- /.row -->
                         <!-- Main row --> */}

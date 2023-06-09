@@ -46,15 +46,15 @@ const Categories = () => {
 
     return (
 
-        <div className='container m-auto'>
+        <div className='container m-auto mt-5 p-5' >
 
 
 
             <div className='row'>
                 <div className='col-sm-12'>
 
-                    <div className='row mb-3 m-auto'>
-                        <h4 className='mt-3'>Search Tickets</h4>
+                    <div className='row m-auto'>
+                        <h4 className='bg-info p-3 text-white text-center mb-5'>Search Tickets</h4>
                         <div className='form-group col-md-4 mt-1'>
 
                             <select name='categories' className='form-control' onChange={(e) => handleCategories(e)}>

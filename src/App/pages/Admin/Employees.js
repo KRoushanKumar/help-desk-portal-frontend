@@ -7,34 +7,48 @@ import { Link, Outlet } from 'react-router-dom';
 
 const Employees = () => {
     const [isError, setIsError] = useState("");
-    const [employees,setEmployees] =[];
-  const getAllEmployee=async()=>{
-    try{
-        const res = await axios.get(`/getAllEmployees/${sessionStorage.getItem('UserID')}`);
-        setEmployees(res.data);
-        console.log('working');
-    }catch(error){
-        setIsError(error.message);
-        console.log('error aa gaya bhago');
+    const [employees, setEmployees] = useState([]);
+    const getAllEmployee = async () => {
+        try {
+            const res = await axios.get(`/getAllEmployees/${sessionStorage.getItem('UserID')}`);
+            setEmployees(res.data);
+            console.log('working');
+        } catch (error) {
+            setIsError(error.message);
+            console.log('error aa gaya bhago');
+        }
     }
-  }
 
-   useEffect(()=>{
-    getAllEmployee();
-   },[]);
-    
+    useEffect(() => {
+        getAllEmployee();
+    }, []);
+
+    const handleDelete=(e)=>{
+        var empId = document.getElementById("deleteEmployee").value
+        if (window.confirm('Do you want to Delete')) {
+            // try {
+            //     axios.delete("/", {  })
+            //     console.log("deleted");
+            // } catch (error) {
+            //     setIsError(error.message);
+            // }
+        }
+    }
+
     return (
-        <div className='container'>
-            <h2 className='text-center'>Employees List</h2>
+        <div className='container m-auto mt-5 p-5' >
+            <h2 className='text-center p-3 text-white bg-info '>Employees List</h2>
+
+            <Outlet />
 
             <Link to="/Admin/employees/addEmployee">
                 <div style={{ marginBottom: "10px" }}>
-                    <button className='btn btn-primary'  >Add Employee</button>
+                    <button className='btn btn-dark'  >Add Employee</button>
                 </div>
             </Link>
 
-            <Outlet />
-            <div className='row'>
+            
+            <div className='row text-white'>
                 <table className='table table-striped table-bordered'>
                     <thead>
                         <tr>
@@ -46,22 +60,26 @@ const Employees = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                           {
-                            employees?.map((employee)=>(
-                                <>
-                             <td>{employee.firstName}</td>
-                            <td>{employee.lastName}</td>
-                            <td>{employee.email}</td>
-                            <td>{employee.userName}</td>
-                            <td>
-                                <button style={{ marginRight: "10px" }} className='btn btn-info'>Update</button>
-                                <button className='btn btn-danger'>Delete</button>
-                            </td>
-                            </>
+                        {
+                            employees?.map((employee) => (
+
+                                <tr>
+
+                                    <td>{employee.firstName}</td>
+                                    <td>{employee.lastName}</td>
+                                    <td>{employee.email}</td>
+                                    <td>{employee.userName}</td>
+                                    <td>
+                                        <Link to="/Admin/employees/updateEmployee">
+                                            <button style={{ marginRight: "10px" }} className='btn btn-info'>Update</button>
+                                        </Link>
+                                        <button className='btn btn-danger' value={employee.id} id='deleteEmpployee'  onClick={(e)=>handleDelete()}>Delete</button>
+                                    </td>
+
+
+                                </tr>
                             ))
-                           }
-                        </tr>
+                        }
                     </tbody>
                 </table>
             </div>
