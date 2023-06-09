@@ -34,6 +34,9 @@ const Employees = () => {
             // }
         }
     }
+    const setEmployeeSession=(e)=>{
+        sessionStorage.setItem("empId",document.getElementById('updateEmployee').value);
+    }
 
     return (
         <div className='container p-5' >
@@ -71,7 +74,7 @@ const Employees = () => {
                                     <td>{employee.userName}</td>
                                     <td>
                                         <Link to="/Admin/employees/updateEmployee">
-                                            <button style={{ marginRight: "10px" }} className='btn btn-info'>Update</button>
+                                            <button style={{ marginRight: "10px" }} id="updateEmployee" value={employee.id} onClick={(e)=>setEmployeeSession()} className='btn btn-info'>Update</button>
                                         </Link>
                                         <button className='btn btn-danger' value={employee.id} id='deleteEmpployee'  onClick={(e)=>handleDelete()}>Delete</button>
                                     </td>
