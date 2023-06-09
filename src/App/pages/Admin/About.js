@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import userPic from "../../../assets/images/userimage.jpg"
+import userPic from "../../../Assets/images/userimage.jpg"
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";

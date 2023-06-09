@@ -1,6 +1,6 @@
 import React from 'react'
-import '../../assets/css/style.css';
-import signup from '../../assets/images/signup-image.jpg'
+import '../../Assets/css/style.css';
+import signup from '../../Assets/images/signup-image.jpg'
 import {
      FaUsers,FaUser,FaLock,
 } from "react-icons/fa";
