@@ -8,7 +8,7 @@ const Categories = () => {
 
 
 
-    
+
     useEffect(() => {
         const getCategoriesApi = async () => {
             try {
@@ -31,8 +31,8 @@ const Categories = () => {
     }
 
 
-    
-   useEffect(() => {
+
+    useEffect(() => {
         const getSubCategoriesApi = async () => {
             try {
                 const res = await axios.get(`/subTickCatgyByTicCatgyId/${categoriesid}`);
@@ -41,23 +41,23 @@ const Categories = () => {
                 setIsError(error.message);
             }
         }
-       getSubCategoriesApi();
-   }, [categoriesid]);
+        getSubCategoriesApi();
+    }, [categoriesid]);
 
     return (
 
-        <div className='container m-auto'>
+        <div className='container  p-5' >
 
-            
+
 
             <div className='row'>
                 <div className='col-sm-12'>
 
-                    <div className='row mb-3 m-auto'>
-                        <h4 className='mt-3'>Search Tickets</h4>
+                    <div className='row m-auto'>
+                        <h4 className='bg-info p-3 text-white text-center mb-5'>Search Tickets</h4>
                         <div className='form-group col-md-4 mt-1'>
 
-                            <select name='categories' className='form-control'  onChange={(e) => handleCategories(e)}>
+                            <select name='categories' className='form-control' onChange={(e) => handleCategories(e)}>
                                 <option>--Select Categories--</option>
                                 {
                                     categories.map((categoryget) => (
@@ -69,7 +69,7 @@ const Categories = () => {
 
                         <div className='form-group col-md-4 mt-1'>
 
-                            <select  name='state' className='form-control'>
+                            <select name='state' className='form-control'>
                                 <option>--Select SubCategories--</option>
                                 {
                                     st.map(
@@ -97,9 +97,7 @@ const Categories = () => {
                 { /*Main layout */}
                 <main style={{ marginTop: "10px" }} className='mr-3'>
                     <div class="container-fluid   ">
-                        <div className='row border p-2  bg-primary rounded'>
-                            <h5 className='text-white'>All tickets</h5>
-                        </div>
+                        
                         <div className='row border'>
                             <div class="container-fluid">
                                 <table class="table">
@@ -124,7 +122,7 @@ const Categories = () => {
             </div>
 
 
-            
+
 
 
         </div>

@@ -24,15 +24,22 @@ function Login() {
             }
             console.log(response.data.roles[0].name);
             if(response.data.roles[0].name==="Admin"){
+                console.log("Admin login");
              console.log('login successful')
              sessionStorage.setItem('UserID', response.data.id)
              sessionStorage.setItem('userName',response.data.userName)
-             navigate('/Admin');
+             console.log(sessionStorage.getItem('UserID'));
+             console.log(sessionStorage.getItem('userName'));
+             navigate('/Admin/dashboard');
             }
             else if(response.data.roles[0].name==="Employee"){
+                console.log("employee login");
                 sessionStorage.setItem('UserID', response.data.id)
                 sessionStorage.setItem('userName',response.data.userName)
-                navigate('/Employee');
+                sessionStorage.setItem('AdminId',response.data.adminId)
+                console.log(sessionStorage.getItem('UserID'));
+                console.log(sessionStorage.getItem('userName'));
+                navigate('/Employee/dashboard');
             }
             else
             navigate('/');
