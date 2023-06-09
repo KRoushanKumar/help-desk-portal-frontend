@@ -42,7 +42,7 @@ const About = () => {
 
     return (
         <>
-            <div className='container m-auto  mt-5 emp-profile p-5' style={{boxShadow:"2px 2px  black"}}>
+            <div className='container m-auto  emp-profile p-5' style={{boxShadow:"2px 2px  black"}}>
                 <div className='row p-5'>
                     <div className='col-md-4'>
                         <div className='profile-img'>

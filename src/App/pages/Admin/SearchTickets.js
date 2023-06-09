@@ -46,7 +46,7 @@ const Categories = () => {
 
     return (
 
-        <div className='container m-auto mt-5 p-5' >
+        <div className='container  p-5' >
 
 
 
@@ -97,9 +97,7 @@ const Categories = () => {
                 { /*Main layout */}
                 <main style={{ marginTop: "10px" }} className='mr-3'>
                     <div class="container-fluid   ">
-                        <div className='row border p-2  bg-primary rounded'>
-                            <h5 className='text-white'>All tickets</h5>
-                        </div>
+                        
                         <div className='row border'>
                             <div class="container-fluid">
                                 <table class="table">

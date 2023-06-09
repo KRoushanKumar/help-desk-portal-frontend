@@ -56,7 +56,7 @@ const CategoriesList = (props) => {
     }
 
     return (
-        <div className='container m-auto mt-5 p-5 ' >
+        <div className='container p-5 ' >
             <h2 className='text-center bg-info p-3 text-white'>Categories List</h2>
             
             

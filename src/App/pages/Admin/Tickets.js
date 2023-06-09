@@ -6,7 +6,7 @@ const Tickets = () => {
     return (
         <div>
             
-                    <div class="container m-auto  mt-5 p-5" >
+                    <div class="container  p-5" >
                       
                             <h5 className='text-white text-center bg-info p-3'>All tickets</h5>
                         

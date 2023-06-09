@@ -36,7 +36,7 @@ const Employees = () => {
     }
 
     return (
-        <div className='container m-auto mt-5 p-5' >
+        <div className='container p-5' >
             <h2 className='text-center p-3 text-white bg-info '>Employees List</h2>
 
             <Outlet />

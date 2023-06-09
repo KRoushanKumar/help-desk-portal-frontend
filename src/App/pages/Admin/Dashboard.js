@@ -5,7 +5,7 @@ const Dashboard = () => {
 
     return (
         <>
-            <div class="container m-auto mt-5 p-5" >
+            <div class="container  p-5 rounded" >
                 {/* <!-- Content Wrapper. Contains page content --> */}
                 <div class="">
                     {/* <!-- Content Header (Page header) --> */}
