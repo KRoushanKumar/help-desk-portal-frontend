@@ -30,15 +30,16 @@ function Login() {
              sessionStorage.setItem('userName',response.data.userName)
              console.log(sessionStorage.getItem('UserID'));
              console.log(sessionStorage.getItem('userName'));
-             navigate('/Admin');
+             navigate('/Admin/dashboard');
             }
             else if(response.data.roles[0].name==="Employee"){
                 console.log("employee login");
                 sessionStorage.setItem('UserID', response.data.id)
                 sessionStorage.setItem('userName',response.data.userName)
+                sessionStorage.setItem('AdminId',response.data.adminId)
                 console.log(sessionStorage.getItem('UserID'));
                 console.log(sessionStorage.getItem('userName'));
-                navigate('/Employee');
+                navigate('/Employee/dashboard');
             }
             else
             navigate('/');
