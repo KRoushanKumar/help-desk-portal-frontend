@@ -63,14 +63,14 @@ const RaiseComplaints = () => {
         var ticketSubCAtId =document.getElementById("subCategory").value;
         var priorityId=1;
         var progressId=1;
-        var adminId =  sessionStorage.getItem('AdminId');
+        var userId =  sessionStorage.getItem('UserID');
 
         console.log("\n" + availableTime +" "+  description +" "+ statdate.value +" "+
                    endDate.value +" ticketCatId:"+ ticketCatId  +" ticketSubCAtId:"+ ticketSubCAtId +" "+ priorityId +" "+ progressId +" "+ 
-                    adminId);
+                   userId);
 
                     try {
-                        const res =  axios.post(`/AddEmployeeQuery/${ticketCatId}/${ticketSubCAtId}/${priorityId}/${progressId}/${adminId}`,
+                        const res =  axios.post(`/AddEmployeeQuery/${ticketCatId}/${ticketSubCAtId}/${priorityId}/${progressId}/${userId}`,
                         {
                             avaTimeDiscussion:availableTime,
                             description:description,

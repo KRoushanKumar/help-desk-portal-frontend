@@ -38,13 +38,13 @@ const UpdateEmployee = () => {
             const last_name =document.getElementById('last_name').value;
             const email=document.getElementById('email').value;
             console.log("badhai ho code run ho gaya");
-            const res = axios.post(`/addEmployee/${sessionStorage.getItem("empId")}`,{firstname:first_name,lastName:last_name,email:email})
-            .then(()=>{
-                sessionStorage.removeItem("empId");
-                navigate
-            }).catch((error)=>{
-                console.log("error aya");
-            });
+            // const res = axios.post(`/addEmployee/${sessionStorage.getItem("empId")}`,{firstname:first_name,lastName:last_name,email:email})
+            // .then(()=>{
+            //     sessionStorage.removeItem("empId");
+            //     navigate
+            // }).catch((error)=>{
+            //     console.log("error aya");
+            // });
         }
     return (
         <div>
