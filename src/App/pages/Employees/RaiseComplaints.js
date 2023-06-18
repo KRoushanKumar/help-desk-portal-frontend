@@ -82,7 +82,7 @@ const RaiseComplaints = () => {
                         alert("New Query Arise")
                         else
                         {   
-                            alert("ssomething worng!")
+                            alert("Something worng!")
                         }
                     } catch (error) {
                         
