@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../../../assets/axios'
+import axios from '../../../Assets/axios'
+import { Link } from 'react-router-dom';
 const Categories = () => {
     const [categories, setCategories] = useState([]);
     const [categoriesid, setCategoriesid] = useState(0);
@@ -156,15 +157,65 @@ const Categories = () => {
                                 <table class="table">
                                     <thead className='text-info '>
                                         <tr>
-                                            <th>REQUESTER</th>
-                                            <th>SUBJECT</th>
-                                            <th>ASSIGNEE</th>
-                                            <th>STATUS</th>
-                                            <th>LAST MESSAGE</th>
+                                            <th>Ticket Id</th>
+                                            <th>Query</th>
+                                            <th>Priority</th>
+                                            <th>Progress</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Solution</th>
+
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody style={{ overflow: "scroll" }}>
 
+                                        {
+                                            allEmpQuery.map((query) => (
+
+
+                                                <tr>
+
+                                                    <td>{query.id}</td>
+                                                    {/* <td>{query.description}</td> */}
+                                                    <td >
+                                                        <div style={{ whiteSpace: "nowrap", width: "100px", overflow: "hidden", textOverflow: "ellipsis" }}>
+                                                            <button className='btn btn-light'  ><i class="bi bi-view-list " style={{ fontSize: 15 }}></i></button>
+                                                            <span> </span>
+                                                            {query.description}
+                                                        </div>
+
+                                                    </td>
+
+
+                                                    <td>{query.priority.prioriryName}</td>
+                                                    {
+                                                        query.progress.progressName === "On Hold" ?
+                                                            <td><span class="badge rounded-pill bg-danger">{query.progress.progressName}</span></td> :
+                                                            query.progress.progressName === "Open" ?
+                                                                <td><span class="badge rounded-pill bg-success">{query.progress.progressName}</span></td> :
+                                                                <td><span class="badge rounded-pill bg-secondary">{query.progress.progressName}</span></td>
+                                                    }
+
+
+                                                    <td>{query.startDate}</td>
+                                                    <td>{query.endDate}</td>
+                                                    <td>
+                                                        <Link to="">
+                                                            <button style={{ marginRight: "10px" }} className='btn btn-primary'><i class="bi bi-view-list"></i></button>
+                                                        </Link>
+                                                        <Link to="">
+                                                            <button style={{ marginRight: "10px" }} className='btn btn-success'><i class="bi bi-send-plus"></i></button>
+                                                        </Link>
+                                                    </td>
+
+
+
+                                                </tr>
+
+
+
+                                            ))
+                                        }
                                     </tbody>
                                 </table>
                             </div>
