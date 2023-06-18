@@ -71,8 +71,8 @@ function Login() {
                                         <input type="password" name="password" id="password" placeholder="Password" />
                                     </div>
                                     <div class="form-group">
-                                        <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                                        <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                                        <input type='checkbox' name="remember-me" id="remember-me" class="agree-term " />
+                                        <label htmlFor="remember-me" class="label-agree-term "><span><span></span></span>Remember me</label>
                                     </div>
                                     <div class="form-group form-button">
                                         <input type="submit"  id="signin" class="form-submit" value="submit" onClick={()=>(BtnLogin())} />
@@ -81,7 +81,10 @@ function Login() {
                                 <div class="social-login">
                                     <span class="social-label">Or login with</span>
                                     <ul class="socials">
-                                        <li><Link  to="/facebook"><img  alt="Bootstrap" width="32" height="32"></img> </Link></li>
+                                        <li><Link  to="/facebook" class="bi bi-facebook"></Link></li>
+                                        <li><Link  to="" class="bi bi-google"></Link></li>
+                                        <li><Link  to="" class="bi bi-twitter"></Link></li>
+                                        <li><Link  to="" class="bi bi-instagram"></Link></li>
                                         
                                         
                                     </ul>

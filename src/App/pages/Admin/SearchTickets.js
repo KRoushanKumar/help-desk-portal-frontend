@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../../Assets/axios'
+import { Link } from 'react-router-dom';
 const Categories = () => {
     const [categories, setCategories] = useState([]);
     const [categoriesid, setCategoriesid] = useState(0);
+    const [subCategoriesid, setSubCategoriesid] = useState(0);
     const [st, setSt] = useState([]);
     const [isError, setIsError] = useState("");
+    const [allEmpQuery, setAllEmpQuery] = useState([]);
+
 
 
 
@@ -22,6 +26,17 @@ const Categories = () => {
     }, []);
 
 
+    const updateQueryTable = async () => {
+        try {
+            const res = await axios.get(`/employeeQueryByCategoryAndSubCategory/${categoriesid}/${subCategoriesid}`);
+            setAllEmpQuery(res.data);
+            console.log("employeeQueryByCategoryAndSubCategory")
+
+        } catch (error) {
+            setIsError(error.message);
+        }
+    }
+
     const handleCategories = (event) => {
         const getcoutryid = event.target.value;
         console.log(getcoutryid);
@@ -29,6 +44,20 @@ const Categories = () => {
         event.preventDefault();
         //console.log(getcoutryid);
     }
+    const handleSubCategories = async (event) => {
+        const subCoutryid = event.target.value;
+        console.log(subCoutryid);
+        setSubCategoriesid(await subCoutryid);
+        console.log("subCategoriesid " + subCategoriesid);
+
+
+
+    }
+
+    useEffect(() => {
+
+        updateQueryTable();
+    }, [subCategoriesid]);
 
 
 
@@ -44,21 +73,46 @@ const Categories = () => {
         getSubCategoriesApi();
     }, [categoriesid]);
 
+    const getAllEmployeeQuery = async () => {
+        try {
+            const res = await axios.get('/AllEmployeeQuery');
+            setAllEmpQuery(await res.data);
+            console.log("getAllEmployeeQuery")
+            // console.log(res.data);
+        } catch (error) {
+            setIsError(error.message);
+        }
+    };
+    useEffect(() => {
+
+        getAllEmployeeQuery();
+    }, []);
+    const allEmployeeQuery = () => {
+        getAllEmployeeQuery();
+        document.getElementById("categories").value = 0;
+        document.getElementById("subCategories").value = 0;
+        setCategoriesid(0);
+    }
+
+
+
+
+
     return (
 
         <div className='container  p-5' >
-
-
-
             <div className='row'>
                 <div className='col-sm-12'>
 
                     <div className='row m-auto'>
                         <h4 className='bg-info p-3 text-white text-center mb-5'>Search Tickets</h4>
+                        <div className='form-group col-md-1 '>
+                            <button className='btn btn-info mt-1' onClick={() => (allEmployeeQuery())}><i class="bi bi-list"></i></button>
+                        </div>
                         <div className='form-group col-md-4 mt-1'>
 
-                            <select name='categories' className='form-control' onChange={(e) => handleCategories(e)}>
-                                <option>--Select Categories--</option>
+                            <select name='categories' id='categories' className='form-control' onChange={(e) => handleCategories(e)}>
+                                <option value="0">--Select Categories--</option>
                                 {
                                     categories.map((categoryget) => (
                                         <option key={categoryget.id} value={categoryget.id} >{categoryget.name}</option>
@@ -69,8 +123,8 @@ const Categories = () => {
 
                         <div className='form-group col-md-4 mt-1'>
 
-                            <select name='state' className='form-control'>
-                                <option>--Select SubCategories--</option>
+                            <select name='subCategories' id='subCategories' className='form-control' onChange={(e) => handleSubCategories(e)}>
+                                <option value="0" >--Select SubCategories--</option>
                                 {
                                     st.map(
                                         (resst) => (
@@ -82,7 +136,7 @@ const Categories = () => {
                         </div>
 
                         <div className='form-group col-md-2 '>
-                            <button className='btn btn-success mt-2'><i class="bi bi-search"></i></button>
+                            <button className='btn btn-success mt-1' onClick={() => (updateQueryTable())}><i class="bi bi-search"></i></button>
                         </div>
 
 
@@ -97,21 +151,71 @@ const Categories = () => {
                 { /*Main layout */}
                 <main style={{ marginTop: "10px" }} className='mr-3'>
                     <div class="container-fluid   ">
-                        
+
                         <div className='row border'>
                             <div class="container-fluid">
                                 <table class="table">
                                     <thead className='text-info '>
                                         <tr>
-                                            <th>REQUESTER</th>
-                                            <th>SUBJECT</th>
-                                            <th>ASSIGNEE</th>
-                                            <th>STATUS</th>
-                                            <th>LAST MESSAGE</th>
+                                            <th>Ticket Id</th>
+                                            <th>Query</th>
+                                            <th>Priority</th>
+                                            <th>Progress</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Solution</th>
+
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody style={{ overflow: "scroll" }}>
 
+                                        {
+                                            allEmpQuery.map((query) => (
+
+
+                                                <tr>
+
+                                                    <td>{query.id}</td>
+                                                    {/* <td>{query.description}</td> */}
+                                                    <td >
+                                                        <div style={{ whiteSpace: "nowrap", width: "100px", overflow: "hidden", textOverflow: "ellipsis" }}>
+                                                            <button className='btn btn-light'  ><i class="bi bi-view-list " style={{ fontSize: 15 }}></i></button>
+                                                            <span> </span>
+                                                            {query.description}
+                                                        </div>
+
+                                                    </td>
+
+
+                                                    <td>{query.priority.prioriryName}</td>
+                                                    {
+                                                        query.progress.progressName === "On Hold" ?
+                                                            <td><span class="badge rounded-pill bg-danger">{query.progress.progressName}</span></td> :
+                                                            query.progress.progressName === "Open" ?
+                                                                <td><span class="badge rounded-pill bg-success">{query.progress.progressName}</span></td> :
+                                                                <td><span class="badge rounded-pill bg-secondary">{query.progress.progressName}</span></td>
+                                                    }
+
+
+                                                    <td>{query.startDate}</td>
+                                                    <td>{query.endDate}</td>
+                                                    <td>
+                                                        <Link to="">
+                                                            <button style={{ marginRight: "10px" }} className='btn btn-primary'><i class="bi bi-view-list"></i></button>
+                                                        </Link>
+                                                        <Link to="">
+                                                            <button style={{ marginRight: "10px" }} className='btn btn-success'><i class="bi bi-send-plus"></i></button>
+                                                        </Link>
+                                                    </td>
+
+
+
+                                                </tr>
+
+
+
+                                            ))
+                                        }
                                     </tbody>
                                 </table>
                             </div>
