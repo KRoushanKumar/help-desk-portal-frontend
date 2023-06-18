@@ -179,7 +179,31 @@ const Categories = () => {
                                                     {/* <td>{query.description}</td> */}
                                                     <td >
                                                         <div style={{ whiteSpace: "nowrap", width: "100px", overflow: "hidden", textOverflow: "ellipsis" }}>
-                                                            <button className='btn btn-light'  ><i class="bi bi-view-list " style={{ fontSize: 15 }}></i></button>
+                                                            <button className='btn btn-light'  ><i class="bi bi-view-list " style={{ fontSize: 15 }} data-bs-toggle="modal" data-bs-target={"#modal" + query.id}></i></button>
+
+                                                            {/* <!-- Modal  of query--> */}
+                                                            <div class="modal fade" id={"modal" + query.id} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Query Description</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body p-2">
+                                                                            {
+                                                                                allEmpQuery.map((query) => (
+                                                                                    <p >{query.description}</p>
+                                                                                ))
+                                                                            }
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                             <span> </span>
                                                             {query.description}
                                                         </div>
@@ -201,11 +225,59 @@ const Categories = () => {
                                                     <td>{query.endDate}</td>
                                                     <td>
                                                         <Link to="">
-                                                            <button style={{ marginRight: "10px" }} className='btn btn-primary'><i class="bi bi-view-list"></i></button>
+                                                            <button style={{ marginRight: "10px" }} className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#showQuerySolution"><i class="bi bi-view-list"></i></button>
                                                         </Link>
+
+                                                           {/* <!-- Modal  of show Query solution--> */}
+                                                           <div class="modal fade" id="showQuerySolution" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">All Solution</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body p-2">
+                                                                            {
+                                                                                allEmpQuery.map((query) => (
+                                                                                    <p >{query.description}</p>
+                                                                                ))
+                                                                            }
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                         <Link to="">
-                                                            <button style={{ marginRight: "10px" }} className='btn btn-success'><i class="bi bi-send-plus"></i></button>
+                                                            <button style={{ marginRight: "10px" }} className='btn btn-success' data-bs-toggle="modal" data-bs-target="#submitQuerySoltion"><i class="bi bi-send-plus"></i></button>
                                                         </Link>
+
+                                                           {/* <!-- Modal  of Submit query soltion--> */}
+                                                           <div class="modal fade" id="submitQuerySoltion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Submit Solution</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body p-2">
+                                                                            {
+                                                                                allEmpQuery.map((query) => (
+                                                                                    <p >{query.description}</p>
+                                                                                ))
+                                                                            }
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                            <button type="button" class="btn btn-primary">Submit</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                     </td>
 
 
