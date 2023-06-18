@@ -99,22 +99,27 @@ const Categories = () => {
                     <div class="container-fluid   ">
                         
                         <div className='row border'>
-                            <div class="container-fluid">
-                                <table class="table">
-                                    <thead className='text-info '>
-                                        <tr>
-                                            <th>REQUESTER</th>
-                                            <th>SUBJECT</th>
-                                            <th>ASSIGNEE</th>
-                                            <th>STATUS</th>
-                                            <th>LAST MESSAGE</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                       
+                    <div class="container-fluid">
+                        <table class="table">
+                            <thead className='text-info '>
+                                <tr>
+                                    <th>ticket Id</th>
+                                    <th>categoory</th>
+                                    <th>subcategory</th>
+                                    <th>priority</th>
+                                    <th>status</th>
+                                    <th>Start date</th>
+                                    <th>End date</th>
+                                    <th>Solution</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                                    </tbody>
-                                </table>
-                            </div>
+                            </tbody>
+                        </table>
+                    
+                </div>
                         </div>
                     </div>
                 </main>

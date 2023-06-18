@@ -26,27 +26,7 @@ const Tickets = () => {
 
                 <h5 className='text-white text-center bg-info p-3'>All tickets</h5>
 
-                <div className='row border'>
-                    <div class="container-fluid">
-                        <table class="table">
-                            <thead className='text-info '>
-                                <tr>
-                                    <th>ticket Id</th>
-                                    <th>categoory</th>
-                                    <th>subcategory</th>
-                                    <th>title</th>
-                                    <th>Assign To</th>
-                                    <th>priority</th>
-                                    <th>status</th>
-                                    <th>creatred date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                
             </div>
 
 

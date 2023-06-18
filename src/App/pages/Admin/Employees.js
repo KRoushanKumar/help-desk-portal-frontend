@@ -36,21 +36,41 @@ const Employees = () => {
     }
     const setEmployeeSession=(e)=>{
         sessionStorage.setItem("empId",document.getElementById('updateEmployee').value);
+        sessionStorage.setItem("Hidden","true");
+        if(sessionStorage.getItem("Hidden")=="true"){
+            document.getElementById("hideBody").style.display="none";
+        }else {
+            document.getElementById("hideBody").style.display="block";
+        }
     }
 
-    return (
-        <div className='container p-5' >
-            <h2 className='text-center p-3 text-white bg-info '>Employees List</h2>
+    const checkHidden=()=>{
+        console.log("calling CheckHidden at start");
+        if(sessionStorage.getItem("Hidden")=="false"){
+            document.getElementById("hideBody").style.display="block";
+            console.log(sessionStorage.getItem("Hidden"));
+        }else if(sessionStorage.getItem("Hidden")=="true"){
+            document.getElementById("hideBody").style.display="none";
+            console.log(sessionStorage.getItem("Hidden"));
+        }
+    }
+    useEffect(()=>{
+        // sessionStorage.removeItem("Hidden");
+        // window.location.reload(false);
+        checkHidden();
+    },[])
 
+    return (<>
+        <div>
             <Outlet />
-
-            <Link to="/Admin/employees/addEmployee">
+        </div>
+        <div className='container p-5' id="hideBody">
+        <Link to="/Admin/employees/addEmployee" >
                 <div style={{ marginBottom: "10px" }}>
-                    <button className='btn btn-dark'  >Add Employee</button>
+                    <button className='btn btn-dark'  onClick={(e)=>setEmployeeSession()}>Add Employee</button>
                 </div>
             </Link>
-
-            
+            <h2 className='text-center p-3 text-white bg-info '>Employees List</h2>
             <div className='row text-white'>
                 <table className='table table-striped table-bordered'>
                     <thead>
@@ -87,6 +107,7 @@ const Employees = () => {
                 </table>
             </div>
         </div>
+        </>
     );
 };
 

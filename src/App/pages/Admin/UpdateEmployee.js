@@ -14,7 +14,9 @@ const UpdateEmployee = () => {
     const navigate = useNavigate();
 
 
-
+    const cancelPage =()=>{
+        sessionStorage.removeItem("Hidden");
+    }
     const getuserApi = async () => {
         try {
             const res = await axios.get(`/getUserByUserId/${sessionStorage.getItem('empId')}`);
@@ -89,7 +91,7 @@ const UpdateEmployee = () => {
 
                                         <Link to="/Admin/employees">
 
-                                            <button type="submit" class="btn btn-success btn-block" > Close  </button>
+                                            <button type="submit" class="btn btn-success btn-block" onClick={()=>cancelPage()}> Close  </button>
 
                                         </Link>
                                     </div>

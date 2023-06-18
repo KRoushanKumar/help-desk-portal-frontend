@@ -23,6 +23,11 @@ const AddEmployee=()=>{
         });
     }
 
+    const cancelPage =()=>{
+        sessionStorage.setItem("Hidden","false");
+        console.log("navigating to employee page");
+    }
+
     return(
         <div className="container-fluid">
         <h6 className='btn btn-danger p-2 text-center m-auto '>{error}</h6>
@@ -57,7 +62,7 @@ const AddEmployee=()=>{
 
                                 <Link to="/Admin/employees">
 
-                                    <button type="submit" class="btn btn-success btn-block m-2"> Close  </button>
+                                    <button type="submit" class="btn btn-success btn-block m-2" onClick={()=>cancelPage()}> Close  </button>
 
                                 </Link>
                             </div>
