@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../../assets/axios'
 import { Link } from 'react-router-dom';
+import "../../../assets/css/admin/searchTickets.css"
 const Categories = () => {
     const [categories, setCategories] = useState([]);
     const [categoriesid, setCategoriesid] = useState(0);
@@ -190,8 +191,9 @@ const Categories = () => {
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body p-2">
-                                                                                    <p >{query.description}</p>
-                                                                             
+                                                                            <div className='row'>
+                                                                                    <p className='text-danger m-3'>{query.description}</p>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
