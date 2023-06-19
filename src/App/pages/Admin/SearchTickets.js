@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../../assets/axios'
-import { Link } from 'react-router-dom';
 import "../../../assets/css/admin/searchTickets.css"
+import ShowQueryModal from './modal/ShowQueryModal';
+import SubmitQuerySolutionModal from './modal/SubmitQuerySolutionModal';
+import ShowQuerySolutionModal from './modal/ShowQuerySolutionModal';
 const Categories = () => {
     const [categories, setCategories] = useState([]);
     const [categoriesid, setCategoriesid] = useState(0);
@@ -9,10 +11,25 @@ const Categories = () => {
     const [st, setSt] = useState([]);
     const [isError, setIsError] = useState("");
     const [allEmpQuery, setAllEmpQuery] = useState([]);
+    const [showQueryM, setQueryM] = useState(false);
+    const [showQuerySolutionM, setShowQuerySolutionM] = useState(false);
+    const [submitQuerySoltionM, setSubmitQuerySolutionM] = useState(false);
 
+    const cancelShowQueryModal = () => {
+        setQueryM(false);
+    }
+    const cancelShowQuerySolutionModal = () => {
+        setShowQuerySolutionM(false);
+    }
+    const cancelSubmitQuerySolutionModal = () => {
+        setSubmitQuerySolutionM(false);
+    }
 
+   
 
+    
 
+    
 
     useEffect(() => {
         const getCategoriesApi = async () => {
@@ -84,8 +101,8 @@ const Categories = () => {
             setIsError(error.message);
         }
     };
-    useEffect(() => {
 
+    useEffect(() => {
         getAllEmployeeQuery();
     }, []);
     const allEmployeeQuery = () => {
@@ -94,11 +111,6 @@ const Categories = () => {
         document.getElementById("subCategories").value = 0;
         setCategoriesid(0);
     }
-
-
-
-
-
     return (
 
         <div className='container  p-5' >
@@ -139,10 +151,6 @@ const Categories = () => {
                         <div className='form-group col-md-2 '>
                             <button className='btn btn-success mt-1' onClick={() => (updateQueryTable())}><i class="bi bi-search"></i></button>
                         </div>
-
-
-
-
                     </div>
                 </div>
 
@@ -170,122 +178,40 @@ const Categories = () => {
                                     </thead>
                                     <tbody style={{ overflow: "scroll" }}>
 
-                                        {
-                                            allEmpQuery.map((query) => (
-
-
+                                        {/* {
+                                            allEmpQuery.map((query) => ( */}
                                                 <tr>
-
-                                                    <td>{query.id}</td>
+                                                    <td>query.id</td>
                                                     {/* <td>{query.description}</td> */}
                                                     <td >
                                                         <div style={{ whiteSpace: "nowrap", width: "100px", overflow: "hidden", textOverflow: "ellipsis" }}>
-                                                            <button className='btn btn-light'  ><i class="bi bi-view-list " style={{ fontSize: 15 }} data-bs-toggle="modal" data-bs-target={"#modal" + query.id}></i></button>
-
-                                                            {/* <!-- Modal  of query--> */}
-                                                            <div class="modal fade" id={"modal" + query.id} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">Query Description</h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body p-2">
-                                                                            <div className='row'>
-                                                                                <p className='text-danger m-3'>{query.description}</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
+                                                            <button className='btn btn-light'  onClick={()=>setQueryM(true)}><i class="bi bi-view-list " style={{ fontSize: 15 }} ></i></button>
+                                                            {showQueryM && <ShowQueryModal cancelShowQueryModal={cancelShowQueryModal}/>}
                                                             <span> </span>
-                                                            {query.description}
+                                                           
                                                         </div>
-
                                                     </td>
-
-
-                                                    <td>{query.priority.prioriryName}</td>
-                                                    {
+                                                    <td>query.priority.prioriryName</td>
+                                                    {/* {
                                                         query.progress.progressName === "On Hold" ?
                                                             <td><span class="badge rounded-pill bg-danger">{query.progress.progressName}</span></td> :
                                                             query.progress.progressName === "Open" ?
                                                                 <td><span class="badge rounded-pill bg-success">{query.progress.progressName}</span></td> :
                                                                 <td><span class="badge rounded-pill bg-secondary">{query.progress.progressName}</span></td>
-                                                    }
+                                                    } */}
+                                                    <td>query.progress.progressName</td>
+                                                    <td>query.startDate</td>
+                                                    <td>query.endDate</td>
+                                                    <td>         
+                                                            <button style={{ marginRight: "10px" }} className='btn btn-primary' onClick={()=>setShowQuerySolutionM(true)}><i class="bi bi-view-list"></i></button>
+                                                            {showQuerySolutionM && <ShowQuerySolutionModal cancelShowQuerySolutionModal={cancelShowQuerySolutionModal}/>}
 
-
-                                                    <td>{query.startDate}</td>
-                                                    <td>{query.endDate}</td>
-                                                    <td>
-                                                        <Link to="">
-                                                            <button style={{ marginRight: "10px" }} className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#showQuerySolution"><i class="bi bi-view-list"></i></button>
-                                                        </Link>
-
-                                                        {/* <!-- Modal  of show Query solution--> */}
-                                                        <div class="modal fade" id="showQuerySolution" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">All Solution</h5>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                    </div>
-                                                                    <div class="modal-body p-2">
-                                                                        ....
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <Link to="">
-                                                            <button style={{ marginRight: "10px" }} className='btn btn-success' data-bs-toggle="modal" data-bs-target="#submitQuerySoltion"><i class="bi bi-send-plus"></i></button>
-                                                        </Link>
-
-                                                        {/* <!-- Modal  of Submit query soltion--> */}
-                                                        <div class="modal fade" id="submitQuerySoltion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">Submit Solution</h5>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                    </div>
-                                                                    <div class="modal-body p-2">
-                                                                        <div class="card">
-                                                                            <div class="card-body m-3">
-                                                                           
-                                                                            <br/>
-                                                                                <textarea placeholder='Write your Query Solution' >
-
-                                                                                </textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                        <button type="button" class="btn btn-primary">Submit</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
+                                                            <button style={{ marginRight: "10px" }} className='btn btn-success' onClick={()=>setSubmitQuerySolutionM(true)} ><i class="bi bi-send-plus"></i></button>    
+                                                            {submitQuerySoltionM && <SubmitQuerySolutionModal cancelSubmitQuerySolutionModal={cancelSubmitQuerySolutionModal}/>}
                                                     </td>
-
-
-
                                                 </tr>
-
-
-
-                                            ))
-                                        }
+                                            {/* ))
+                                        } */}
                                     </tbody>
                                 </table>
                             </div>

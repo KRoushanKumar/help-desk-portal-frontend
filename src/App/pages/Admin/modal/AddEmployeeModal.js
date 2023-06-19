@@ -1,8 +1,8 @@
 import React, { useState ,useEffect} from 'react';
-import axios from "../../../assets/axios"
+import axios from "../../../../assets/axios"
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../../assets/css/admin/modal.css";
+import "../../../../assets/css/admin/modal.css"
 
 const AddEmployeeModal=({closeAddEmpModal}) => {
     const [error,setError]=useState("");
