@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import "./../../../assets/css/admin/dashboard.css";
+import { Link } from 'react-router-dom';
 const Dashboard = () => {
-
+    const [allEmpQuery, setAllEmpQuery] = useState([]);
 
     return (
         <>
@@ -31,7 +32,9 @@ const Dashboard = () => {
                                 <div class="icon">
                                     <i class="bi bi-chat-text Heading float-end  "></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info<i class="bi bi-forward"></i></a>
+                                <Link to="/Admin/searchTickets">
+                                <h6  class="small-box-footer">More info <i class="bi bi-forward"></i></h6>
+                                </Link>
                             </div>
                         </div>
                         {/* <!-- ./col --> */}
@@ -45,7 +48,9 @@ const Dashboard = () => {
                                 <div class="icon">
                                     <i class="bi bi-people-fill float-end"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info<i class="bi bi-forward"></i></a>
+                                <Link to="/Admin/employees">
+                                <h6  class="small-box-footer">More info <i class="bi bi-forward"></i></h6>
+                                </Link>
                             </div>
                         </div>
                         {/* <!-- ./col --> */}

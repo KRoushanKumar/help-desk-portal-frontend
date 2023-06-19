@@ -192,7 +192,7 @@ const Categories = () => {
                                                                         </div>
                                                                         <div class="modal-body p-2">
                                                                             <div className='row'>
-                                                                                    <p className='text-danger m-3'>{query.description}</p>
+                                                                                <p className='text-danger m-3'>{query.description}</p>
                                                                             </div>
                                                                         </div>
                                                                         <div class="modal-footer">
@@ -226,47 +226,55 @@ const Categories = () => {
                                                             <button style={{ marginRight: "10px" }} className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#showQuerySolution"><i class="bi bi-view-list"></i></button>
                                                         </Link>
 
-                                                           {/* <!-- Modal  of show Query solution--> */}
-                                                           <div class="modal fade" id="showQuerySolution" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">All Solution</h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body p-2">
-                                                                                ....
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                            
-                                                                        </div>
+                                                        {/* <!-- Modal  of show Query solution--> */}
+                                                        <div class="modal fade" id="showQuerySolution" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">All Solution</h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body p-2">
+                                                                        ....
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
 
                                                         <Link to="">
                                                             <button style={{ marginRight: "10px" }} className='btn btn-success' data-bs-toggle="modal" data-bs-target="#submitQuerySoltion"><i class="bi bi-send-plus"></i></button>
                                                         </Link>
 
-                                                           {/* <!-- Modal  of Submit query soltion--> */}
-                                                           <div class="modal fade" id="submitQuerySoltion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">Submit Solution</h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        {/* <!-- Modal  of Submit query soltion--> */}
+                                                        <div class="modal fade" id="submitQuerySoltion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Submit Solution</h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body p-2">
+                                                                        <div class="card">
+                                                                            <div class="card-body m-3">
+                                                                           
+                                                                            <br/>
+                                                                                <textarea placeholder='Write your Query Solution' >
+
+                                                                                </textarea>
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="modal-body p-2">
-                                                                           ...
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                            <button type="button" class="btn btn-primary">Submit</button>
-                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                        <button type="button" class="btn btn-primary">Submit</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
 
                                                     </td>
 
