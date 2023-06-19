@@ -3,11 +3,31 @@ import axios from "../../../assets/axios"
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { Link, Outlet } from 'react-router-dom';
+import AddEmployeeModal from './AddEmployeeModal';
+import UpdateEmployeeModal from "./UpdateEmployeeModal";
 
 const Employees = () => {
     const [isError, setIsError] = useState("");
     const [employees, setEmployees] = useState([]);
+    const [showAddEmplModal, setShowAddEmpModal] = useState(false);
+    const [showUpdateEmpModal, setShowUpdateEmpModal] = useState(false);
+
+    const addEmployee=()=>{
+        setShowAddEmpModal(true);
+    }
+    const closeAddEmpModal = () => {
+        setShowAddEmpModal(false);
+    }
+
+    const updateEmployee=()=>{
+        sessionStorage.setItem("empId", document.getElementById('updateEmployee').value);
+        setShowUpdateEmpModal(true);
+    }
+    const closeUpdateEmpModal = () => {
+         sessionStorage.removeItem("empId");
+        setShowUpdateEmpModal(false);
+    }
+    
     const getAllEmployee = async () => {
         try {
             const res = await axios.get(`/getAllEmployees/${sessionStorage.getItem('UserID')}`);
@@ -23,7 +43,7 @@ const Employees = () => {
         getAllEmployee();
     }, []);
 
-    const handleDelete=(e)=>{
+    const handleDelete = (e) => {
         var empId = document.getElementById("deleteEmployee").value
         if (window.confirm('Do you want to Delete')) {
             // try {
@@ -34,42 +54,15 @@ const Employees = () => {
             // }
         }
     }
-    const setEmployeeSession=(e)=>{
-        sessionStorage.setItem("empId",document.getElementById('updateEmployee').value);
-        sessionStorage.setItem("Hidden","true");
-        if(sessionStorage.getItem("Hidden")=="true"){
-            document.getElementById("hideBody").style.display="none";
-        }else {
-            document.getElementById("hideBody").style.display="block";
-        }
-    }
-
-    const checkHidden=()=>{
-        console.log("calling CheckHidden at start");
-        if(sessionStorage.getItem("Hidden")=="false"){
-            document.getElementById("hideBody").style.display="block";
-            console.log(sessionStorage.getItem("Hidden"));
-        }else if(sessionStorage.getItem("Hidden")=="true"){
-            document.getElementById("hideBody").style.display="none";
-            console.log(sessionStorage.getItem("Hidden"));
-        }
-    }
-    useEffect(()=>{
-        // sessionStorage.removeItem("Hidden");
-        // window.location.reload(false);
-        checkHidden();
-    },[])
-
     return (<>
-        <div>
-            <Outlet />
-        </div>
+
         <div className='container p-5' id="hideBody">
-        <Link to="/Admin/employees/addEmployee" >
-                <div style={{ marginBottom: "10px" }}>
-                    <button className='btn btn-dark'  onClick={(e)=>setEmployeeSession()}>Add Employee</button>
-                </div>
-            </Link>
+
+            <div style={{ marginBottom: "10px" }}>
+                <button className='btn btn-dark' onClick={() => addEmployee()}>Add Employee</button>
+                {showAddEmplModal && <AddEmployeeModal closeAddEmpModal={closeAddEmpModal} />}
+            </div>
+
             <h2 className='text-center p-3 text-white bg-info '>Employees List</h2>
             <div className='row text-white'>
                 <table className='table table-striped table-bordered'>
@@ -84,22 +77,18 @@ const Employees = () => {
                     </thead>
                     <tbody>
                         {
-                            employees?.map((employee) => (
-
+                            employees.map((employee) => (
                                 <tr>
-
                                     <td>{employee.firstName}</td>
                                     <td>{employee.lastName}</td>
                                     <td>{employee.email}</td>
                                     <td>{employee.userName}</td>
                                     <td>
-                                        <Link to="/Admin/employees/updateEmployee">
-                                            <button style={{ marginRight: "10px" }} id="updateEmployee" value={employee.id} onClick={(e)=>setEmployeeSession()} className='btn btn-info'>Update</button>
-                                        </Link>
-                                        <button className='btn btn-danger' value={employee.id} id='deleteEmpployee'  onClick={(e)=>handleDelete()}>Delete</button>
+                                        <button style={{ marginRight: "10px" }} value={employee.id} id='updateEmployee' className='btn btn-info' onClick={() => updateEmployee()}>Update</button>
+                                        {showUpdateEmpModal && <UpdateEmployeeModal closeUpdateEmpModal={closeUpdateEmpModal} />}
+                                        
+                                        <button className='btn btn-danger' value={employee.id} id='deleteEmpployee' onClick={(e) => handleDelete()}>Delete</button>
                                     </td>
-
-
                                 </tr>
                             ))
                         }
@@ -107,7 +96,7 @@ const Employees = () => {
                 </table>
             </div>
         </div>
-        </>
+    </>
     );
 };
 

@@ -20,10 +20,10 @@ import AboutEmp from "./App/pages/Employees/AboutEmp";
 import CategoriesEmp from "./App/pages/Employees/CategoriesEmp";
 import RaiseComplaints from "./App/pages/Employees/RaiseComplaints";
 import TrackComplaints from "./App/pages/Employees/TrackComplaints";
-import AddEmployee from "./App/pages/Admin/AddEmployee";
+import AddEmployeeModal from "./App/pages/Admin/AddEmployeeModal";
 import CategoriesPage from "./App/pages/Admin/CategorySubCategory/CategoriesPage";
 import MyComplaints from "./App/pages/Employees/MyComplaints"
-import UpdateEmployee from "./App/pages/Admin/UpdateEmployee";
+import UpdateEmployeeModal from "./App/pages/Admin/UpdateEmployeeModal";
 function App() {
 
   // learn withCredentials in Axios 
@@ -40,8 +40,8 @@ function App() {
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="about" element={<About />} />
                     <Route path="employees" element={<Employees />}>
-                      <Route path="addEmployee" element={<AddEmployee/>} />
-                      <Route path="updateEmployee" element={<UpdateEmployee/>} />
+                      <Route path="addEmployeeModal" element={<AddEmployeeModal/>} />
+                      <Route path="updateEmployeeModal" element={<UpdateEmployeeModal/>} />
                     </Route>
                     <Route path="searchTickets" element={<SearchTickets />} />
                     <Route path="categoriesPage" element={<CategoriesPage />}>
