@@ -1,16 +1,25 @@
+import { useEffect, useState } from "react";
 import "../../../../assets/css/admin/modal.css"
 const ShowQueryModal = ({cancelShowQueryModal}) => {
+   const [des,setDes]=useState("");
+ 
+    useEffect(()=>{
+        console.log("called query description modal");
+        setDes(sessionStorage.getItem("queryDes"));
+    }
+    ,[])
+   
+    
     return (<>
         <div class="modal-wrapper" ></div>
         <div class="modal-container container">
-            <div class="row m-2">
+            <div class="row m-2 modal-dialog">
                 <div class="text-center">
                     <h5 class="" >Query Description</h5>
-                    
                 </div>
                 <div class="">
                     <div className='row'>
-                        <p className='text-danger m-3'>query.description</p>
+                        <p className='text-danger m-3'>{des}</p>
                     </div>
                 </div>
                 <div class="">

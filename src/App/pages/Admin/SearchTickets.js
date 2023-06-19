@@ -16,7 +16,9 @@ const Categories = () => {
     const [submitQuerySoltionM, setSubmitQuerySolutionM] = useState(false);
 
     const cancelShowQueryModal = () => {
+        sessionStorage.removeItem("queryDes");
         setQueryM(false);
+
     }
     const cancelShowQuerySolutionModal = () => {
         setShowQuerySolutionM(false);
@@ -25,11 +27,13 @@ const Categories = () => {
         setSubmitQuerySolutionM(false);
     }
 
-   
-
-    
-
-    
+    const showQueryFunction=(e)=>{
+        var value=document.getElementById("descriptionBtn").value;
+        sessionStorage.setItem("queryDes",value);
+        console.log(value);
+ 
+        setQueryM(true);
+    }
 
     useEffect(() => {
         const getCategoriesApi = async () => {
@@ -42,7 +46,6 @@ const Categories = () => {
         };
         getCategoriesApi();
     }, []);
-
 
     const updateQueryTable = async () => {
         try {
@@ -67,17 +70,12 @@ const Categories = () => {
         console.log(subCoutryid);
         setSubCategoriesid(await subCoutryid);
         console.log("subCategoriesid " + subCategoriesid);
-
-
-
     }
 
     useEffect(() => {
 
         updateQueryTable();
     }, [subCategoriesid]);
-
-
 
     useEffect(() => {
         const getSubCategoriesApi = async () => {
@@ -178,30 +176,30 @@ const Categories = () => {
                                     </thead>
                                     <tbody style={{ overflow: "scroll" }}>
 
-                                        {/* {
-                                            allEmpQuery.map((query) => ( */}
+                                         {
+                                            allEmpQuery.map((query) => ( 
                                                 <tr>
-                                                    <td>query.id</td>
+                                                    <td>{query.id}</td>
                                                     {/* <td>{query.description}</td> */}
                                                     <td >
                                                         <div style={{ whiteSpace: "nowrap", width: "100px", overflow: "hidden", textOverflow: "ellipsis" }}>
-                                                            <button className='btn btn-light'  onClick={()=>setQueryM(true)}><i class="bi bi-view-list " style={{ fontSize: 15 }} ></i></button>
+                                                            <button className='btn btn-light' value={query.description} id='descriptionBtn' onClick={(e)=>showQueryFunction(e)}><i class="bi bi-view-list " style={{ fontSize: 15 }} ></i></button>
                                                             {showQueryM && <ShowQueryModal cancelShowQueryModal={cancelShowQueryModal}/>}
                                                             <span> </span>
                                                            
                                                         </div>
                                                     </td>
-                                                    <td>query.priority.prioriryName</td>
-                                                    {/* {
+                                                    <td>{query.priority.prioriryName}</td>
+                                                    {
                                                         query.progress.progressName === "On Hold" ?
                                                             <td><span class="badge rounded-pill bg-danger">{query.progress.progressName}</span></td> :
                                                             query.progress.progressName === "Open" ?
                                                                 <td><span class="badge rounded-pill bg-success">{query.progress.progressName}</span></td> :
                                                                 <td><span class="badge rounded-pill bg-secondary">{query.progress.progressName}</span></td>
-                                                    } */}
-                                                    <td>query.progress.progressName</td>
-                                                    <td>query.startDate</td>
-                                                    <td>query.endDate</td>
+
+                                                    }
+                                                    <td>{query.startDate}</td>
+                                                    <td>{query.endDate}</td>
                                                     <td>         
                                                             <button style={{ marginRight: "10px" }} className='btn btn-primary' onClick={()=>setShowQuerySolutionM(true)}><i class="bi bi-view-list"></i></button>
                                                             {showQuerySolutionM && <ShowQuerySolutionModal cancelShowQuerySolutionModal={cancelShowQuerySolutionModal}/>}
@@ -210,8 +208,8 @@ const Categories = () => {
                                                             {submitQuerySoltionM && <SubmitQuerySolutionModal cancelSubmitQuerySolutionModal={cancelSubmitQuerySolutionModal}/>}
                                                     </td>
                                                 </tr>
-                                            {/* ))
-                                        } */}
+                                             ))
+                                        } 
                                     </tbody>
                                 </table>
                             </div>
