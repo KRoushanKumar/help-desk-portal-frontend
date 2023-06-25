@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../../Assets/axios'
 import { Link } from 'react-router-dom';
+import "../../../Assets/css/admin/searchTickets.css"
 const Categories = () => {
     const [categories, setCategories] = useState([]);
     const [categoriesid, setCategoriesid] = useState(0);
@@ -178,7 +179,7 @@ const Categories = () => {
                                                     <td>{query.id}</td>
                                                     {/* <td>{query.description}</td> */}
                                                     <td >
-                                                    <div style={{ whiteSpace: "nowrap", width: "100px", overflow: "hidden", textOverflow: "ellipsis" }}>
+                                                        <div style={{ whiteSpace: "nowrap", width: "100px", overflow: "hidden", textOverflow: "ellipsis" }}>
                                                             <button className='btn btn-light'  ><i class="bi bi-view-list " style={{ fontSize: 15 }} data-bs-toggle="modal" data-bs-target={"#modal" + query.id}></i></button>
 
                                                             {/* <!-- Modal  of query--> */}
@@ -190,14 +191,12 @@ const Categories = () => {
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body p-2">
-                                                                            
-                                                                                    <p >{query.description}</p>
-                                                                               
-                                                                            
+                                                                            <div className='row'>
+                                                                                    <p className='text-danger m-3'>{query.description}</p>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                            <button type="button" class="btn btn-primary">Save changes</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -227,8 +226,8 @@ const Categories = () => {
                                                             <button style={{ marginRight: "10px" }} className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#showQuerySolution"><i class="bi bi-view-list"></i></button>
                                                         </Link>
 
-                                                        {/* <!-- Modal  of show Query solution--> */}
-                                                        <div class="modal fade" id="showQuerySolution" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                           {/* <!-- Modal  of show Query solution--> */}
+                                                           <div class="modal fade" id="showQuerySolution" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
@@ -236,7 +235,7 @@ const Categories = () => {
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body p-2">
-                                                                            ....
+                                                                                ....
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -250,8 +249,8 @@ const Categories = () => {
                                                             <button style={{ marginRight: "10px" }} className='btn btn-success' data-bs-toggle="modal" data-bs-target="#submitQuerySoltion"><i class="bi bi-send-plus"></i></button>
                                                         </Link>
 
-                                                        {/* <!-- Modal  of Submit query soltion--> */}
-                                                        <div class="modal fade" id="submitQuerySoltion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                           {/* <!-- Modal  of Submit query soltion--> */}
+                                                           <div class="modal fade" id="submitQuerySoltion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
@@ -259,7 +258,7 @@ const Categories = () => {
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body p-2">
-                                                                            ....
+                                                                           ...
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
