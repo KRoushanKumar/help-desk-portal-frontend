@@ -73,7 +73,6 @@ const Categories = () => {
     }
 
     useEffect(() => {
-
         updateQueryTable();
     }, [subCategoriesid]);
 
