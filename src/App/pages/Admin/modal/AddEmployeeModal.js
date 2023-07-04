@@ -7,29 +7,20 @@ import "../../../../assets/css/admin/modal.css"
 const AddEmployeeModal=({closeAddEmpModal}) => {
     const [error,setError]=useState("");
     const [employee,setEmployee]=useState({
-        username:"",
-        firstname:"",
-        lastname:"",
+        userName:"",
+        firstName:"",
+        lastName:"",
         email:"",
-        password:""
+        password:"",
     });
+    const {userName,firstName,lastName,email,password}=employee;
 
     const onInputChange=(e)=>{
-        setEmployee({...employee,[e.target.name]:e.target.value})
+        setEmployee({...employee,[e.target.name]: e.target.value})
     };
 
     console.log("addEmployee fn called");
 
-    // const saveEmployee=(e)=>{
-    //     console.log("badhai ho code run ho gaya");
-    //     const res = axios.post(`/addEmployee/${sessionStorage.getItem("UserID")}`).then(()=>{
-    //         console.log("run ho gaya");
-    //         window.alert("added successfull");
-    //     }).catch((error)=>{
-    //         console.log("error aya");
-    //         setError(error.message);
-    //     });
-    // }
     const saveEmployee= async(e)=>{
         try {
             const res=await axios.post(`/addEmployee/${sessionStorage.getItem("UserID")}`,employee)
@@ -54,19 +45,19 @@ const AddEmployeeModal=({closeAddEmpModal}) => {
                         <hr style={{ backgroundColor: "red" }} />
                         <div className="form">
                             <div class="form-group">
-                                <input name="username" onChange={onInputChange} class="form-control" placeholder="User name" type="text" required />
+                                <input name="userName" onChange={(e)=> onInputChange(e)} value={userName} class="form-control" placeholder="User name" type="text" required />
                             </div>
                             <div class="form-group">
-                                <input name="firstname" onChange={onInputChange} class="form-control" placeholder="First name" type="text" required />
+                                <input name="firstName" onChange={(e)=> onInputChange(e)} value={firstName} class="form-control" placeholder="First name" type="text" required />
                             </div>
                             <div class="form-group">
-                                <input name="lastname" onChange={onInputChange} class="form-control" placeholder="Last name" type="text" required />
+                                <input name="lastName" onChange={(e)=> onInputChange(e)} value={lastName} class="form-control" placeholder="Last name" type="text" required />
                             </div>
                             <div class="form-group">
-                                <input  name="email" onChange={onInputChange} class="form-control" placeholder="Email" type="email" required />
+                                <input  name="email" onChange={(e)=> onInputChange(e)} value={email} class="form-control" placeholder="Email" type="email" required />
                             </div>
                             <div class="form-group">
-                                <input  name="password" onChange={onInputChange} class="form-control" placeholder="password" type="password" required />
+                                <input  name="password" onChange={(e)=> onInputChange(e)} value={password} class="form-control" placeholder="password" type="password" required />
                             </div>
                             <div className='text-center '>
                                 <button type="submit" class="btn btn-success btn-block" onClick={()=>saveEmployee()}> Add  </button>
