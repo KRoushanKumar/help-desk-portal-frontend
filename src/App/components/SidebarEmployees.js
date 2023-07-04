@@ -25,11 +25,11 @@ const SidebarEmployees = ({children}) => {
             name:"About",
             icon:<FaUserAlt/>
         },
-        {
-            path:"/Employee/categories",
-            name:"Categories",
-            icon:<FaThList/>
-        },
+        // {
+        //     path:"/Employee/categories",
+        //     name:"Categories",
+        //     icon:<FaThList/>
+        // },
         {
             path:"/Employee/trackComplaints",
             name:"Track Complaints",
