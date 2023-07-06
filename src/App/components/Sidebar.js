@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {
     FaBars,
     FaCommentAlt,
+    FaSearch,
     FaTh, FaThList, FaTicketAlt, FaUserAlt, FaUsers,
 
 } from "react-icons/fa";
@@ -33,23 +34,23 @@ const Sidebar = ({children}) => {
         {
             path:"/Admin/searchTickets",
             name:"Search Ticket",
-            icon:<FaThList/>
+            icon:<FaSearch/>
         },
         {
             path:"/Admin/categoriesPage",
             name:"Categories",
             icon:<FaThList/>
         },
-        {
-            path:"/Admin/tickets",
-            name:"Tickets",
-            icon:<FaTicketAlt/>
-        },
-        {
-            path:"/Admin/comments",
-            name:"Comments",
-            icon:<FaCommentAlt/>
-        },
+        // {
+        //     path:"/Admin/tickets",
+        //     name:"Tickets",
+        //     icon:<FaTicketAlt/>
+        // },
+        // {
+        //     path:"/Admin/comments",
+        //     name:"Comments",
+        //     icon:<FaCommentAlt/>
+        // },
         {
             path:"/",
             name:"Log Out",
