@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../../../../assets/axios'
+import axios from '../../../../Assets/axios'
 import {  Link } from "react-router-dom";
 
 const CategoriesList = (props) => {

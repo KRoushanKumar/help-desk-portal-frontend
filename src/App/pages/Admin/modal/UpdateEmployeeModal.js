@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from "../../../../assets/axios"
+import axios from "../../../../Assets/axios"
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../../../assets/css/admin/modal.css"
+import "../../../../Assets/css/admin/modal.css"
 
 const UpdateEmployeeModal = ({closeUpdateEmpModal}) => {
 
@@ -20,7 +20,7 @@ const UpdateEmployeeModal = ({closeUpdateEmpModal}) => {
     };
     const handleUpdate= async(e)=>{
         try {
-            const res=await axios.put(`/updateEmployee/${sessionStorage.getItem("UserID")}`,employee)
+            const res=await axios.put(`/updateEmployee/${sessionStorage.getItem("empId")}`,employee)
             console.log(res.data);
         } catch (error) {
             setIsError(error.message);

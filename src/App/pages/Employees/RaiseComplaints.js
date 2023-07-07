@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import "../../../assets/css/raisecomplaint.css"
-import axios from '../../../assets/axios'
+import "../../../Assets/css/raisecomplaint.css"
+import axios from '../../../Assets/axios'
 
 
 const RaiseComplaints = () => {

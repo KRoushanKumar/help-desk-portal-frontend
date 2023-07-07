@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import userPic from "../../../assets/images/userimage.jpg";
+import userPic from "../../../Assets/images/userimage.jpg";
 import { useNavigate } from 'react-router-dom';
-import axios from "../../../assets/axios"
+import axios from "../../../Assets/axios"
 
 const AboutEmp = () => {
     const [empData, setEmpData] = useState([]);

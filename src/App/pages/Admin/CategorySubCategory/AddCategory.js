@@ -1,4 +1,4 @@
-import axios from '../../../../assets/axios'
+import axios from '../../../../Assets/axios'
 
 
 const AddCategory=(props)=>{

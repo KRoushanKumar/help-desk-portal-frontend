@@ -1,4 +1,4 @@
-import "../../../../assets/css/admin/modal.css"
+import "../../../../Assets/css/admin/modal.css"
 const ShowQuerySolutionModal = ({cancelShowQuerySolutionModal}) => {
     return (
         <>

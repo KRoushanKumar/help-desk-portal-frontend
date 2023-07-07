@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./../../../assets/css/admin/dashboard.css";
+import "./../../../Assets/css/admin/dashboard.css";
 import { Link } from 'react-router-dom';
 const Dashboard = () => {
     const [allEmpQuery, setAllEmpQuery] = useState([]);

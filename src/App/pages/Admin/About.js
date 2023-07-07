@@ -1,6 +1,6 @@
 import React, { useState ,useEffect} from 'react';
-import userPic from "../../../assets/images/userimage.jpg"
-import axios from "../../../assets/axios"
+import userPic from "../../../Assets/images/userimage.jpg"
+import axios from "../../../Assets/axios"
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from 'react-router-dom';

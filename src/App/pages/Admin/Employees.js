@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from "../../../assets/axios"
+import axios from "../../../Assets/axios"
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -70,6 +70,7 @@ const Employees = () => {
                 <table className='table table-striped table-bordered'>
                     <thead>
                         <tr>
+                            <th>Id </th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email ID</th>
@@ -81,6 +82,7 @@ const Employees = () => {
                         {
                             employees.map((employee) => (
                                 <tr>
+                                    <td>{employee.id}</td>
                                     <td>{employee.firstName}</td>
                                     <td>{employee.lastName}</td>
                                     <td>{employee.email}</td>

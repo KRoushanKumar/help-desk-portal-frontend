@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../../../../assets/css/admin/modal.css"
+import "../../../../Assets/css/admin/modal.css"
 const ShowQueryModal = ({cancelShowQueryModal}) => {
    const [des,setDes]=useState("");
  
