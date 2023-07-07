@@ -8,6 +8,25 @@ const UpdateEmployeeModal = ({closeUpdateEmpModal}) => {
 
     const [userData, setUserData] = useState([]);
     const [isError, setIsError] = useState("");
+    const [employee,setEmployee]=useState({
+        firstName:'',
+        lastName:'',
+        email:''
+    });
+
+    const {firstName,lastName,email}=employee;
+    const onInputChange=(e)=>{
+        setEmployee({...employee,[e.target.name]: e.target.value})
+    };
+    const handleUpdate= async(e)=>{
+        try {
+            const res=await axios.put(`/updateEmployee/${sessionStorage.getItem("empId")}`,employee)
+            console.log(res.data);
+        } catch (error) {
+            setIsError(error.message);
+        }
+    }
+
 
     const getuserApi = async () => {
         try {
@@ -16,6 +35,7 @@ const UpdateEmployeeModal = ({closeUpdateEmpModal}) => {
             setUserData(res.data);
             console.log("working");
             console.log(res.data);
+            
         } catch (error) {
             setIsError(error.message);
             console.log("error kaha se aa rha");
@@ -66,18 +86,18 @@ const UpdateEmployeeModal = ({closeUpdateEmpModal}) => {
                                         <input class="form-control" placeholder="password" value={user.password} type="password" disabled />
                                     </div>
                                     <div class="form-group">
-                                        <input name="" id="first_name" class="form-control" placeholder="First name" value={user.firstName}  type="text" required />
+                                        <input name="firstName" id="first_name" onChange={(e)=> onInputChange(e)}  class="form-control" placeholder="First name" value={firstName}  type="text" required />
                                     </div>
 
                                     <div class="form-group">
-                                        <input name="" id="last_name" class="form-control" placeholder="Last name" value={user.lastName} type="text" required />
+                                        <input name="lastName" id="last_name" onChange={(e)=> onInputChange(e)} class="form-control" placeholder="Last name" value={lastName} type="text" required />
                                     </div>
                                     <div class="form-group">
-                                        <input  id="email" class="form-control" placeholder="Email" value={user.email} type="email" required />
+                                        <input  name="email" id="email" onChange={(e)=> onInputChange(e)} class="form-control" placeholder="Email" value={email} type="email" required />
                                     </div>
                                     
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-success btn-block m-2" > Change  </button>
+                                        <button type="submit" class="btn btn-success btn-block m-2" onClick={handleUpdate}> Change  </button>
                                        <button type="submit" class="btn btn-success btn-block" onClick={closeUpdateEmpModal}> Close  </button>
                                     </div>
 

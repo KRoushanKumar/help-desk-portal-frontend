@@ -11,6 +11,13 @@ function registration() {
 
     function input()
     {
+        
+        if(checkUserName())
+        {
+            console.log("userName Already Exist..");
+            return false;
+        }
+
         console.log('registation ');
         var userName = document.getElementById("userName").value;
         var firstName = document.getElementById("firstName").value;
@@ -97,6 +104,18 @@ function registration() {
 
     }
 
+    function  checkUserName(){
+        var userName = document.getElementById("userName").value;
+        Axois.get(`http://localhost:8080/api/userName/${userName}`)
+        .then((res)=>{
+            if(res.data.id!=null){
+                alert('user name already exist.')
+                return false;
+            }
+            else
+                return true ;
+        }).catch((error) => { console.log(error) });
+    }
     return (
         <>
             <div class="main">
@@ -110,7 +129,7 @@ function registration() {
                                 <div  class="register-form" id="register-form">
                                     <div class="form-group">
                                         <label mlFor="userName"><FaUser/></label>
-                                        <input type="text"  id="userName" placeholder="User name" />
+                                        <input type="text"  id="userName" placeholder="User name" onChange={()=>(checkUserName())} />
                                     </div>
                                     <span id="uname" class="danger" style={{color: "red"}}></span>
                                     
