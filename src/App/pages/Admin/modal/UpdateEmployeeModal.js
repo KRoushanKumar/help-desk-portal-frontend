@@ -35,6 +35,7 @@ const UpdateEmployeeModal = ({closeUpdateEmpModal}) => {
             setUserData(res.data);
             console.log("working");
             console.log(res.data);
+            
         } catch (error) {
             setIsError(error.message);
             console.log("error kaha se aa rha");

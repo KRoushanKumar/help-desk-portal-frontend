@@ -18,7 +18,6 @@ const Categories = () => {
     const cancelShowQueryModal = () => {
         sessionStorage.removeItem("queryDes");
         setQueryM(false);
-
     }
     const cancelShowQuerySolutionModal = () => {
         setShowQuerySolutionM(false);
@@ -27,11 +26,10 @@ const Categories = () => {
         setSubmitQuerySolutionM(false);
     }
 
-    const showQueryFunction=(e)=>{
-        var value=document.getElementById("descriptionBtn").value;
-        sessionStorage.setItem("queryDes",value);
-        console.log(value);
- 
+    const handleShowQuery = (event) => {
+        var des = event.target.value;
+        sessionStorage.setItem("queryDes", des);
+        console.log(des);
         setQueryM(true);
     }
 
@@ -175,17 +173,17 @@ const Categories = () => {
                                     </thead>
                                     <tbody style={{ overflow: "scroll" }}>
 
-                                         {
-                                            allEmpQuery.map((query) => ( 
+                                        {
+                                            allEmpQuery.map((query) => (
                                                 <tr>
                                                     <td>{query.id}</td>
                                                     {/* <td>{query.description}</td> */}
                                                     <td >
                                                         <div style={{ whiteSpace: "nowrap", width: "100px", overflow: "hidden", textOverflow: "ellipsis" }}>
-                                                            <button className='btn btn-light' value={query.description} id='descriptionBtn' onClick={(e)=>showQueryFunction(e)}><i class="bi bi-view-list " style={{ fontSize: 15 }} ></i></button>
-                                                            {showQueryM && <ShowQueryModal cancelShowQueryModal={cancelShowQueryModal}/>}
+                                                            <button className='btn btn-light' value={query.description} onClick={(event) => handleShowQuery(event)}><i class="bi bi-view-list " style={{ fontSize: 15 }} ></i></button>
+                                                            {showQueryM && <ShowQueryModal cancelShowQueryModal={cancelShowQueryModal} />}
                                                             <span> </span>
-                                                           
+
                                                         </div>
                                                     </td>
                                                     <td>{query.priority.prioriryName}</td>
@@ -199,16 +197,16 @@ const Categories = () => {
                                                     }
                                                     <td>{query.startDate}</td>
                                                     <td>{query.endDate}</td>
-                                                    <td>         
-                                                            <button style={{ marginRight: "10px" }} className='btn btn-primary' onClick={()=>setShowQuerySolutionM(true)}><i class="bi bi-view-list"></i></button>
-                                                            {showQuerySolutionM && <ShowQuerySolutionModal cancelShowQuerySolutionModal={cancelShowQuerySolutionModal}/>}
+                                                    <td>
+                                                        <button style={{ marginRight: "10px" }} className='btn btn-primary' onClick={() => setShowQuerySolutionM(true)}><i class="bi bi-view-list"></i></button>
+                                                        {showQuerySolutionM && <ShowQuerySolutionModal cancelShowQuerySolutionModal={cancelShowQuerySolutionModal} />}
 
-                                                            <button style={{ marginRight: "10px" }} className='btn btn-success' onClick={()=>setSubmitQuerySolutionM(true)} ><i class="bi bi-send-plus"></i></button>    
-                                                            {submitQuerySoltionM && <SubmitQuerySolutionModal cancelSubmitQuerySolutionModal={cancelSubmitQuerySolutionModal}/>}
+                                                        <button style={{ marginRight: "10px" }} className='btn btn-success' onClick={() => setSubmitQuerySolutionM(true)} ><i class="bi bi-send-plus"></i></button>
+                                                        {submitQuerySoltionM && <SubmitQuerySolutionModal cancelSubmitQuerySolutionModal={cancelSubmitQuerySolutionModal} />}
                                                     </td>
                                                 </tr>
-                                             ))
-                                        } 
+                                            ))
+                                        }
                                     </tbody>
                                 </table>
                             </div>
