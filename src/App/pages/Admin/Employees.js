@@ -19,8 +19,9 @@ const Employees = () => {
         setShowAddEmpModal(false);
     }
 
-    const updateEmployee=()=>{
-        sessionStorage.setItem("empId", document.getElementById('updateEmployee').value);
+    const updateEmployee=(event)=>{
+        var id=event.target.value;
+        sessionStorage.setItem("empId", id);
         setShowUpdateEmpModal(true);
     }
     const closeUpdateEmpModal = () => {
@@ -43,8 +44,9 @@ const Employees = () => {
         getAllEmployee();
     }, []);
 
-    const handleDelete = (e) => {
-        var empId = document.getElementById("deleteEmployee").value
+    const handleDelete = (event) => {
+        var empId = event.target.value;
+        console.log(empId);
         if (window.confirm('Do you want to Delete')) {
             // try {
             //     axios.delete("/", {  })
@@ -84,10 +86,10 @@ const Employees = () => {
                                     <td>{employee.email}</td>
                                     <td>{employee.userName}</td>
                                     <td>
-                                        <button style={{ marginRight: "10px" }} value={employee.id} id='updateEmployee' className='btn btn-info' onClick={() => updateEmployee()}>Update</button>
+                                        <button style={{ marginRight: "10px" }} value={employee.id} id='updateEmployee' className='btn btn-info' onClick={(event) => updateEmployee(event)}>Update</button>
                                         {showUpdateEmpModal && <UpdateEmployeeModal closeUpdateEmpModal={closeUpdateEmpModal} />}
                                         
-                                        <button className='btn btn-danger' value={employee.id} id='deleteEmpployee' onClick={(e) => handleDelete()}>Delete</button>
+                                        <button className='btn btn-danger' value={employee.id} id='deleteEmpployee' onClick={(event) => handleDelete(event)}>Delete</button>
                                     </td>
                                 </tr>
                             ))
