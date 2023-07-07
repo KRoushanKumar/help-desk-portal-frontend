@@ -95,6 +95,34 @@ const Categories = () => {
         setCategoriesid(0);
     }
 
+    const sendSodution = (id)=>{
+        var soltion = document.getElementById("solutionInput"+id).value;
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = yyyy +'-'+ mm + '-' + dd ;  
+        alert(soltion + " " + today);
+
+        try {
+            const res =  axios.post(`/addEmpQuerySolution/${id}`,
+            {
+                solution:soltion,
+                lastSolutionDate:today,
+                
+            });
+            
+            if(res)
+            alert("New Solution sent.")
+            else
+            {   
+                alert("Something worng!")
+            }
+        } catch (error) {
+            setIsError(error.message);
+        }
+    }
 
 
 
@@ -223,19 +251,40 @@ const Categories = () => {
                                                     <td>{query.endDate}</td>
                                                     <td>
                                                         <Link to="">
-                                                            <button style={{ marginRight: "10px" }} className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#showQuerySolution"><i class="bi bi-view-list"></i></button>
+                                                            <button style={{ marginRight: "10px" }} className='btn btn-primary' data-bs-toggle="modal" data-bs-target={"#showQuerySolution" + query.id}><i class="bi bi-view-list"></i></button>
                                                         </Link>
 
                                                            {/* <!-- Modal  of show Query solution--> */}
-                                                           <div class="modal fade" id="showQuerySolution" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                           <div class="modal fade" id={"showQuerySolution" + query.id} tabindex="-1" aria-labelledby="showQueryexampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">All Solution</h5>
+                                                                            <h5 class="modal-title" id="showQueryexampleModalLabel">All Solution</h5>
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body p-2">
-                                                                                ....
+                                                                        {/* updated by Alok */}
+                                                                        <table class="table">
+                                                                            <thead className='text-info '>
+                                                                                    <tr>
+                                                                                        <th>Solution</th>
+                                                                                        <th>Date</th>
+                                                                                    </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            {query.empQuerySol.map(sol => 
+                                                                               
+                                                                                <tr>
+                                                                                    <td>{sol.solution}</td>
+                                                                                    <td>{sol.lastSolutionDate}</td>
+                                                                                </tr>
+                                                                            
+                                                                                                           
+                                                                            )}
+                                                                            </tbody>
+                                                                        </table>
+                                                                            {/* <p className='text-danger m-3'>{query.empQuerySol[0].solution}</p> */}
+                                                                        {/* updated by Alok */}
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -246,11 +295,11 @@ const Categories = () => {
                                                             </div>
 
                                                         <Link to="">
-                                                            <button style={{ marginRight: "10px" }} className='btn btn-success' data-bs-toggle="modal" data-bs-target="#submitQuerySoltion"><i class="bi bi-send-plus"></i></button>
+                                                            <button style={{ marginRight: "10px" }} className='btn btn-success' data-bs-toggle="modal" data-bs-target={"#submitQuerySoltion" + query.id}><i class="bi bi-send-plus"></i></button>
                                                         </Link>
 
                                                            {/* <!-- Modal  of Submit query soltion--> */}
-                                                           <div class="modal fade" id="submitQuerySoltion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                           <div class="modal fade" id={"submitQuerySoltion"+query.id} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
@@ -258,11 +307,23 @@ const Categories = () => {
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body p-2">
-                                                                           ...
+                                                                        <div >
+                                                                        
+                                                                             
+                                                                                <div className="form-group">
+                                                                                
+                                                                                Ticket ID: {query.id}
+                                                                                
+                                                                                
+                                                                                 
+                                                                                <input type="text" id={"solutionInput"+query.id} className='form-control' placeholder="Solution" required/>
+                                                                                </div> 
+
+                                                                        </div>
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                            <button type="button" class="btn btn-primary">Submit</button>
+                                                                            <button type="button" class="btn btn-primary" onClick={()=>(sendSodution(query.id))}>Submit</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
