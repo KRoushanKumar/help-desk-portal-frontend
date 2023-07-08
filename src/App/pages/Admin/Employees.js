@@ -14,9 +14,11 @@ const Employees = () => {
 
     const addEmployee=()=>{
         setShowAddEmpModal(true);
+
     }
     const closeAddEmpModal = () => {
         setShowAddEmpModal(false);
+
     }
 
     const updateEmployee=(event)=>{
@@ -42,18 +44,19 @@ const Employees = () => {
 
     useEffect(() => {
         getAllEmployee();
-    }, []);
+    }, [showAddEmplModal]);
 
     const handleDelete = (event) => {
         var empId = event.target.value;
         console.log(empId);
         if (window.confirm('Do you want to Delete')) {
-            // try {
-            //     axios.delete("/", {  })
-            //     console.log("deleted");
-            // } catch (error) {
-            //     setIsError(error.message);
-            // }
+            try {
+                axios.delete("/deleteEmployee/"+empId)
+                alert("Deleted");
+                console.log("deleted");
+            } catch (error) {
+                setIsError(error.message);
+            }
         }
     }
     return (<>
