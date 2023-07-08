@@ -28,7 +28,7 @@ main{
   padding:20px 15px;
 }
 .logo{
-  font-size: 30px;
+  width:100px;
 }
 .bars{
   display: flex;

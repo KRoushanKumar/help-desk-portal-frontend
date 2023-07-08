@@ -9,6 +9,91 @@ import { Link } from 'react-router-dom';
 import Axois from 'axios';
 function registration() {
 
+
+    function validation()
+    {
+        var userName = document.getElementById("userName").value;
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var cPassword = document.getElementById("re_pass").value;
+        
+        if(userName==""){
+            document.getElementById('uname').innerHTML="**Please enter your username";
+            return false;
+        } else if((userName.length<=2 )|| (userName.length>=20)){
+            document.getElementById('uname').innerHTML="**User name must be between 2-20 characters";
+            return false;
+        } else {
+            document.getElementById('uname').innerHTML="";
+        }
+        
+        if(firstName==""){
+            document.getElementById('fname').innerHTML="**Please enter your first name";
+            return false;
+        } else if((firstName.length<=2 )|| (firstName.length>=20)){
+            document.getElementById('fname').innerHTML="**Full name must be between 2-20 characters";
+            return false;
+        } else if(!isNaN(firstName)){
+            document.getElementById('fname').innerHTML="**Only characters allowed";
+            return false;
+        } else {
+            document.getElementById('fname').innerHTML="";
+        }
+
+        if(lastName==""){
+            document.getElementById('lname').innerHTML="**Please enter your last name";
+            return false;
+        } else if((lastName.length<=2 )|| (lastName.length>=20)){
+            document.getElementById('lname').innerHTML="**Last name must be between 2-20 characters";
+            return false;
+        } else if(!isNaN(lastName)){
+            document.getElementById('lname').innerHTML="**Only characters allowed";
+            return false;
+        } else {
+            document.getElementById('lname').innerHTML="";
+        }
+
+        if(email==""){
+            document.getElementById('mail').innerHTML="**Please enter your email";
+            return false;
+        } else if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+            document.getElementById('mail').innerHTML="";  
+            
+        } else {
+            document.getElementById('mail').innerHTML="**Enter valid email";
+            return false;
+        } 
+        
+        if(password ==""){
+            document.getElementById('pass').innerHTML="**Please enter your password.";
+            return false;
+        } else if(password.length < 3) {
+            document.getElementById('pass').innerHTML="Your password must be at least 3 characters.";
+            return false;
+        } else if(password.search(/[a-z]/i) < 0) {
+            document.getElementById('pass').innerHTML="Your password must contain at least one letter.";
+            return false; 
+        } else if(password.search(/[0-9]/) < 0) {
+            document.getElementById('pass').innerHTML="Your password must contain at least one digit.";
+            return false;
+        } else {
+            document.getElementById('pass').innerHTML="";
+        }
+
+        if(cPassword==""){
+            document.getElementById('cpass').innerHTML="**Please enter your confirm password";
+            return false;
+        } else if(password != cPassword){
+            document.getElementById('cpass').innerHTML="**Password are not matching";
+            return false;
+        } else document.getElementById('cpass').innerHTML="";
+
+        return true;
+
+    }
+
     function input()
     {
         
@@ -25,82 +110,15 @@ function registration() {
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
         var cPassword = document.getElementById("re_pass").value;
-        //alert(password);
-        // validation start
-        if(userName==""){
-            document.getElementById('uname').innerHTML="**Please enter your username";
-        } else if((userName.length<=2 )|| (userName.length>=20)){
-            document.getElementById('uname').innerHTML="**User name length must be between 2-20 characters";
-        } else {
-            document.getElementById('uname').innerHTML="";
-        }
         
-        if(firstName==""){
-            document.getElementById('fname').innerHTML="**Please enter your first name";
-        } else if((firstName.length<=2 )|| (firstName.length>=20)){
-            document.getElementById('fname').innerHTML="**Full name length must be between 2-20 characters";
-        } else if(!isNaN(firstName)){
-            document.getElementById('fname').innerHTML="**Only characters allowed";
-        } else {
-            document.getElementById('fname').innerHTML="";
-        }
-
-        if(lastName==""){
-            document.getElementById('lname').innerHTML="**Please enter your last name";
-        } else if((lastName.length<=2 )|| (lastName.length>=20)){
-            document.getElementById('lname').innerHTML="**Last name length must be between 2-20 characters";
-        } else if(!isNaN(lastName)){
-            document.getElementById('lname').innerHTML="**Only characters allowed";
-        } else {
-            document.getElementById('lname').innerHTML="";
-        }
-
-        if(email==""){
-            document.getElementById('mail').innerHTML="**Please enter your email";
-        } else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-            document.getElementById('mail').innerHTML="";
-          
-        } else {
-            document.getElementById('mail').innerHTML="**Enter valid email";
-        } 
-        
-        if(password ==""){
-            document.getElementById('pass').innerHTML="**Please enter your password.";
-        }
-        else if (password.length < 8) {
-            document.getElementById('pass').innerHTML="Your password must be at least 8 characters.";
-        }
-        else if (password.search(/[a-z]/i) < 0) {
-            document.getElementById('pass').innerHTML="Your password must contain at least one letter."; 
-        }
-        else if (password.search(/[0-9]/) < 0) {
-            document.getElementById('pass').innerHTML="Your password must contain at least one digit.";
-        }
-        else
-        document.getElementById('pass').innerHTML="";
-
-        
-        
-        if(cPassword==""){
-            document.getElementById('cpass').innerHTML="**Please enter your confirm password";
-        } else if(password != cPassword){
-            document.getElementById('cpass').innerHTML="**Password are not matching";
-        } else document.getElementById('cpass').innerHTML="";
-
-
-        // validation end
-
-
-        //var id=1;
         console.log(userName+" "+firstName+" "+lastName+" "+email+" "+password);
 
-        //Axois.post('http://localhost:8080/api/show')
-
-
+        if(validation()===true){
         Axois.post('http://localhost:8080/api/registration',{userName:userName,password:password,firstName:firstName,lastName:lastName,email:email})
         .then(()=>{
             alert('registation successful')
         }).catch((error) => { console.log(error) });
+       }
 
     }
 
@@ -109,7 +127,7 @@ function registration() {
         Axois.get(`http://localhost:8080/api/userName/${userName}`)
         .then((res)=>{
             if(res.data.id!=null){
-                alert('user name already exist.')
+                alert('user name already exist.');
                 return false;
             }
             else
