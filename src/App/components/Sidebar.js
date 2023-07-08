@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import company_logo from "../../Assets/images/company_logo.png";
 
 import {
     FaBars,
@@ -62,6 +63,7 @@ const Sidebar = ({children}) => {
             <div style={{width: isOpen ? "200px" : "50px"}} className='sidebar'>
                  <div className='top_section'>
                     <h1 style={{display: isOpen ? "block" : "none"}} className='logo'>Admin</h1>
+                    {/* <img src={company_logo} alt='logo' className='logo' style={{display: isOpen ? "block" : "none"}} /> */}
                     <div style={{marginLeft: isOpen ? "50px" : "0px"}} className='bars'>
                         <FaBars onClick={toggle}/>
                     </div>
