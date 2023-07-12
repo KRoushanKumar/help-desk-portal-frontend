@@ -1,62 +1,84 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import axios from "../../../../Assets/axios";
-
+import AddSubCategory from "./AddSubCategory";
+import EditSubCategory from "./EditSubCategory"
 
 const ViewSubCategories=(props)=>{
     const [subCategories, setSubCategories] = useState([]);
     const [categryid,setCategryid]=useState(0);
     const [isError, setIsError] = useState("");
-    console.log(" + "+ props.ticCtgryId);
+    const [showSubCatAdd,setShowSubCatAdd]=useState(false);
+    const [showSubCatEdit,setShowSubCatEdit]=useState(false);
     
+    const setSession=(subCatId)=>{
+        sessionStorage.setItem("subCatId",subCatId);
+    }
+    const removeSession=(subCatId)=>{
+        sessionStorage.removeItem("subCatId");
+    }
+    const showSubCatModal=()=>{
+        setShowSubCatAdd(true);
+    }
+    const cancelShowSubCatModal=()=>{
+        setShowSubCatAdd(false);
+    }
+    const showSubCatEditModal=(e)=>{
+        console.log("show sub cat edit modal working");
+        setShowSubCatEdit(true);
+        console.log(e.target.value);
+        setSession(e.target.value);
+    }
+    const cancelSubCatEditModal=()=>{
+        setShowSubCatEdit(false);
+    }
     const handleDelete = () => {
-        var categoriesid = document.getElementById("deleteSubCate").value
+      
         if (window.confirm('Do you want to Delete')) {
             try {
-                axios.delete("/deleteCategory", {categoriesid})
+                axios.delete("/deleteCategory")
                 console.log("deleted");
             } catch (error) {
                 setIsError(error.message);
                 console.log(isError);
             }
         }
-
     }
 
     useEffect(() => {
-        setCategryid(props.ticCtgryId);
-        const getSubCategoriesApi = async () => {
-            try {
-                const res = await axios.get(`/subTickCatgyByTicCatgyId/${categryid}`);
-                setSubCategories(await res.data);
-            } catch (error) {
-                setIsError(error.message);
-            }
+        getSubCategoriesApi();
+    }, [categryid]);
+    const getSubCategoriesApi = async () => {
+        try {
+            var ticketId = sessionStorage.getItem("CatId");
+            const res = await axios.get(`/subTickCatgyByTicCatgyId/${ticketId}`);
+            setSubCategories(res.data);
+            console.log(res.data);
+            console.log("get sub cat working");
+        } catch (error) {
+            setIsError(error.message);
         }
-       getSubCategoriesApi();
-   }, [categryid]);
-
+    }
+  
+   
    const showCtrgryList = ()=>
    {
         props.showSubCategories(false);
         props.showCtgryList(true);
         props.showAddSubCategories(false);
    }
-   const showAddSubCategories = ()=>
-   {
-        props.showAddSubCategories(true);
-        
-   }
-
     return(
-        <div className='container'>
+        <div className='container-fluid'>
             <h2 className='text-center text-primary'>SubCategories List</h2>
             <hr style={{color:"red"}}/>
             <div>
-                <button className='btn btn-info mb-4 'onClick={()=>showAddSubCategories()}>+ Add SubCategories</button>
-                <button className='btn btn-back mb-4' onClick={()=>(showCtrgryList())}  >Back</button>
+                <button className='btn btn-info mb-4' onClick={showSubCatModal}>+ Add SubCategories</button>
+                {showSubCatAdd  && <AddSubCategory cancelShowSubCatModal={cancelShowSubCatModal}/>}
+
+                
+                <button to="Admin/categoriesPage" className='btn btn-back mb-4'  onClick={()=>(showCtrgryList())} >Back</button>
             </div>
-            Category Name: {props.ticCtgryName}
+           <div className="btn btn-dark"> Category Name: {props.ticCtgryName}</div>
             <div className='row'>
                 <table className='table table-striped table-bordered'>
                     <thead>
@@ -67,9 +89,6 @@ const ViewSubCategories=(props)=>{
                         </tr>
                     </thead>
                     <tbody>
-
-                       
-                            
                        {
                         subCategories.map((subCategory) =>
                             (<tr>
@@ -78,8 +97,11 @@ const ViewSubCategories=(props)=>{
                                 <td>{subCategory.name}</td>
 
                                 <td>
-                                    <Link to="" style={{ marginRight: "10px" }}  className='btn btn-info'  >Edit</Link>
-                                    <button className='btn btn-danger'  >Delete</button>
+                                    <button style={{ marginRight: "10px" }} value={subCategory.id} className='btn btn-info'  onClick={(e)=>showSubCatEditModal(e)}>Edit</button>
+                                    {
+                                        showSubCatEdit && <EditSubCategory cancelSubCatEditModal={cancelSubCatEditModal}/>
+                                    }
+                                    <button className='btn btn-danger' onClick={handleDelete} >Delete</button>
                                 </td>
                             </tr>
                             ))

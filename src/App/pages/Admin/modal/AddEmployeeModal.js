@@ -25,6 +25,7 @@ const AddEmployeeModal=({closeAddEmpModal}) => {
         try {
             const res=await axios.post(`/addEmployee/${sessionStorage.getItem("UserID")}`,employee)
             console.log(res.data);
+           
         } catch (error) {
             setError(error.message)
         }

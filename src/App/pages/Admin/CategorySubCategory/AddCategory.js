@@ -1,11 +1,11 @@
 import axios from '../../../../Assets/axios'
+import "../../../../Assets/css/admin/modal.css"
 
+const AddCategory=({cancelAddCate})=>{
 
-const AddCategory=(props)=>{
-
-    const hideAddCtgryt =()=>{
-        props.showAddCategory(false);
-    }
+    // const hideAddCtgryt =()=>{
+    //     props.showAddCategory(false);
+    // }
     const input=(e)=>{
    
         var categoryName=document.getElementById('categoryName').value;
@@ -21,7 +21,8 @@ const AddCategory=(props)=>{
 
         <div className="container-fluid">
             <div className="row">
-                <div className="col-md-4 m-auto mt-5"> 
+            <div className='modal-wrapper'></div>
+                <div className="col-md-4 m-auto mt-5 modal-container"> 
                     <div class="card text-dark">
                         <article class="card-body p-4">
 
@@ -35,7 +36,7 @@ const AddCategory=(props)=>{
 
                                 <div class="form-group text-left">
                                     <button type="submit"  class="btn btn-success btn-block" onClick={()=>(input())}> Add  </button>
-                                    <button type="submit" class="m-2 btn btn-danger btn-block" onClick={()=>(hideAddCtgryt())}> Back  </button>
+                                    <button type="submit" class="m-2 btn btn-danger btn-block" onClick={cancelAddCate}> Back  </button>
                                 </div>
 
                             </div>
