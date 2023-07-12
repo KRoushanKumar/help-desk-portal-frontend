@@ -8,9 +8,9 @@ const ShowQueryModal = ({cancelShowQueryModal}) => {
         setDes(sessionStorage.getItem("queryDes"));
     }
     ,[])
-   
-    
-    return (<>
+
+    return (
+    <>
         <div class="modal-wrapper" ></div>
         <div class="modal-container container">
             <div class="row m-2 modal-dialog">
@@ -23,7 +23,7 @@ const ShowQueryModal = ({cancelShowQueryModal}) => {
                     </div>
                 </div>
                 <div class="">
-                    <button type="button" class="btn btn-secondary" onClick={cancelShowQueryModal}>Close</button>
+                    <button  type="button" className="btn btn-secondary" onClick={cancelShowQueryModal}>close</button>
                 </div>
             </div>
         </div>

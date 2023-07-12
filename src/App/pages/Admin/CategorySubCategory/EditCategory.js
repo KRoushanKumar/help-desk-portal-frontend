@@ -1,69 +1,73 @@
-// import { useEffect, useState } from "react";
+ import { useEffect, useState } from "react";
  import axios from "../../../../Assets/axios";
+import "../../../../Assets/css/admin/modal.css"
+const EditCategory = ({cancelEditCateModal}) => {
 
-const EditCategory = (props) => {
-    // const cateId=useParams("cateId");
+    const [catData,setCatData]=useState({});
+    const [categories, setCategories] = useState({
+        id:'',
+        name:''
+    });
+    const {id,name}=categories;
+    const onInputChange=(e)=>{
+        setCategories({...categories,[e.target.name]: e.target.value})
+    };
+    const getCategoriesApi = async () => {
+        try {
 
-    // const [Categories, setCategories] = useState([]);
+            var catId=sessionStorage.getItem("CatId");
+            console.log(catId);
+           const res = await axios.get(`/ticketCategoryById/${catId}`);
+           setCatData(res.data);
+           console.log("working");
+           console.log(res.data);
+       } catch (error) {
+            console.log("Error");
+       }
+   };
+    useEffect(() => {
+        console.log("edit cat page arrive");
+        getCategoriesApi();
+        
+     }, [])
 
-    // const getCategoriesApi = async () => {
-    //     try {
-    //         const res = await axios.get("/ticketCategoryById", { cateId });
-    //         setCategories(res);
-    //     } catch (error) {
-    //         console.log("Error");
-    //     }
-    // };
-    // useEffect(() => {
-    //     getCategoriesApi();
-    // }, [])
-
-    // const handlesubmit = () => {
-    //     var name = document.getElementById("name").value;
-
-    // }
-
-    const showCtgryList = ()=>
-    {
-        props.showEditCategory(false);
-    }
-    const input=(e)=>{
-   
-        var categoryName=document.getElementById('categoryName').value;
-        axios.post('addTicketCategories',{categoryName:e.categoryName})
+    const handleSubmit=()=>{
+        var ticketId=sessionStorage.getItem("CatId");
+        axios.put(`/updateTicketCategory/${ticketId}`,categories)
             .then(()=>{
-                alert('Add successful ${categoryame}')
-                console.log(categoryName)
+                alert(`Add successful ${categories.name}`)
+                console.log()
             }).catch((error) => { console.log(error) });
     }
 
-
-
     return (
-
         <div className="container-fluid">
             <div className="row">
-                <div className="col-md-4 m-auto mt-5">
+            <div className='modal-wrapper'></div>
+                <div className="col-md-4 m-auto mt-5 modal-container">
                     <div class="card text-dark">
                         <article class="card-body p-4">
 
                             <h4 class="card-title  p-2  text-primary text-left rounded">Edit  Category </h4>
                             <hr style={{ color: "green" }} />
+                            {/* {
+                            catData.map((category)=>(  */}
                             <div className="form" id="addCategory">
 
                                 <div class="form-group mb-2">
-                                    <input name="" value="{categoory.Id}" class="form-control" disabled="disabled" id="cateId" type="text" required />
+                                    <input name="id" value={catData.id}  onChange={(e)=>onInputChange(e)} class="form-control" disabled="disabled" type="text" required />
                                 </div>
                                 <div class="form-group mb-2">
-                                    <input name="" value="{categoory.name}" class="form-control" placeholder="  Category title to Edit" id="categoryName" type="text" required />
+                                    <input name="name" value={name} onChange={(e)=>onInputChange(e)} class="form-control" placeholder={catData.name}  type="text" required />
                                 </div>
 
                                 <div class="form-group text-left">
-                                    <button type="submit" class="btn btn-success btn-block" onClick={() => (input())}> Save  </button>
-                                    <button type="submit" class=" m-2 btn btn-danger btn-block" onClick={()=>{showCtgryList()}}> Back  </button>
+                                    <button type="submit" class="btn btn-success btn-block" onClick={handleSubmit}> Save  </button>
+                                    <button type="submit" class=" m-2 btn btn-danger btn-block" onClick={cancelEditCateModal}> Back  </button>
                                 </div>
 
                             </div>
+                             {/* ))}  */}
                         </article>
                     </div>
                 </div>
