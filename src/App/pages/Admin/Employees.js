@@ -11,6 +11,7 @@ const Employees = () => {
     const [employees, setEmployees] = useState([]);
     const [showAddEmplModal, setShowAddEmpModal] = useState(false);
     const [showUpdateEmpModal, setShowUpdateEmpModal] = useState(false);
+    const [changeEmployeeDate,setChangeEmployeeDate]=useState(1);
 
     const addEmployee=()=>{
         setShowAddEmpModal(true);
@@ -44,16 +45,24 @@ const Employees = () => {
 
     useEffect(() => {
         getAllEmployee();
-    }, [showAddEmplModal]);
+    }, [showAddEmplModal,changeEmployeeDate]);
 
-    const handleDelete = (event) => {
+    const handleDelete = async (event) => {
         var empId = event.target.value;
         console.log(empId);
         if (window.confirm('Do you want to Delete')) {
             try {
-                axios.delete("/deleteEmployee/"+empId)
+               const res = await axios.delete("/deleteEmployee/"+empId)
+              // alert(res);
+              // alert("res.data "+res.data);
+               if(res.data===true){
                 alert("Deleted");
                 console.log("deleted");
+                setChangeEmployeeDate(changeEmployeeDate%10+1);
+               }
+               else{
+                alert("error!");
+               }
             } catch (error) {
                 setIsError(error.message);
             }
