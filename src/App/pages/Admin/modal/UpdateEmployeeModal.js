@@ -22,6 +22,9 @@ const UpdateEmployeeModal = ({closeUpdateEmpModal}) => {
         try {
             const res=await axios.put(`/updateEmployee/${sessionStorage.getItem("empId")}`,employee)
             console.log(res.data);
+            if(res!=null){
+                alert(`updated successful ${employee.firstName}`);
+               }
         } catch (error) {
             setIsError(error.message);
         }

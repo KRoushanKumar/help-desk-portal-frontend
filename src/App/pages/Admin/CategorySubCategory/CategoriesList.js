@@ -1,14 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../../../Assets/axios'
 import {  Link } from "react-router-dom";
+import AddCategory from './AddCategory';
+import EditCategory from './EditCategory'
 
 const CategoriesList = (props) => {
     const [categories, setCategories] = useState([]);
     const [isError, setIsError] = useState("");
     const [categoriesid,setCategoriesid]=useState();
+    const [showAddCategory,setShowAddCategory]=useState(false);
+    const [showEditCategory,setShowEditCategory]=useState(false);
 
-    const Change = ()=>{
-        props.showAddCategory(true);
+    const handleAddCateModal=()=>{
+        setShowAddCategory(true);
+    }
+    const cancelAddCateModal=()=>{
+        setShowAddCategory(false);
+    }
+
+    const setSession=(id)=>{
+        sessionStorage.setItem("CatId",id);
+    }
+    const removeSession=(id)=>{
+        sessionStorage.removeItem("CatId");
+    }
+
+    const handleEditCatModal = (e) => {
+        var id=e.target.value;
+       setSession(id);
+       setShowEditCategory(true);
+    }
+    const cancelEditCateModal=()=>{
+        setShowEditCategory(false);
+        removeSession();
     }
 
     const getCategoriesApi = async () => {
@@ -25,43 +49,39 @@ const CategoriesList = (props) => {
     }, [])
 
 
-    const handleDelete = () => {
-        var categoriesid = document.getElementById("deleteCate").value
-        if (window.confirm('Do you want to Delete')) {
-            try {
-                axios.delete("/deleteCategory", { categoriesid })
+    const handleDelete = (e) => {
+        var ticketId=e.target.value;
+        if (window.confirm('Do you want to Delete ticket id:'+ticketId)) {
+           try {
+                axios.delete(`/deleteCategory/${ticketId}`)
                 console.log("deleted");
             } catch (error) {
-                setIsError(error.message);
+                 setIsError(error.message);
             }
         }
 
-    }
+     }
 
-    const ShowSubCtgry = (categoryget) =>
-    {
-        props.showSubCategories(true);
-        props.showCtgryList(false);
-        props.ticCtgryId(categoryget.id);
-        props.ticCtgryName(categoryget.name); 
+     const ShowSubCtgry = (categoryget) =>
+     {
+         props.showSubCategories(true);
+         props.showCtgryList(false);
+         props.ticCtgryId(categoryget.id);
+         props.ticCtgryName(categoryget.name); 
+         setSession(categoryget.id);
         console.log("Category Id "+categoryget.id );
-        console.log("Category name "+categoryget.name );
-    }
+       console.log("Category name "+categoryget.name );
+     }
 
-    const handleEdit = () => {
-        props.showEditCategory(true);
-        var categoriesId = document.getElementById("editCate").value
-        setCategoriesid(categoriesId);
-        console.log(categoriesId);
-    }
-
+   
     return (
         <div className='container p-5 ' >
             <h2 className='text-center bg-info p-3 text-white'>Categories List</h2>
             
             
             <div>
-                <button className='btn btn-info' onClick={()=>(Change())}>+ Add Categories</button>
+                <button className='btn btn-info' onClick={handleAddCateModal}>+ Add Categories</button>
+                {showAddCategory && <AddCategory cancelAddCate={cancelAddCateModal}/>}
             </div>
             
             
@@ -85,8 +105,9 @@ const CategoriesList = (props) => {
 
                                 <td>
                                     <Link to="" style={{ marginRight: "10px" }} className='btn btn-info dropdown' onClick={()=>(ShowSubCtgry(categoryget))} >View Subcategories</Link>
-                                    <Link to="" style={{ marginRight: "10px" }} id="editCate" value={categoryget.id} className='btn btn-info' onClick={handleEdit} >Edit</Link>
-                                    <button className='btn btn-danger' value={categoryget.id} id="deleteCate" onClick={handleDelete}>Delete</button>
+                                    <button style={{ marginRight: "10px" }}  value={categoryget.id} className='btn btn-info' onClick={(e)=>handleEditCatModal(e)} >Edit</button>
+                                    {showEditCategory && <EditCategory cancelEditCateModal={cancelEditCateModal}/>}
+                                    <button className='btn btn-danger' value={categoryget.id} id="deleteCate" onClick={(e)=>handleDelete(e)}>Delete</button>
                                 </td>
                             </tr>
                             ))
