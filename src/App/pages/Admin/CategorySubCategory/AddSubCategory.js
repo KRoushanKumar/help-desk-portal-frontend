@@ -1,8 +1,39 @@
+import { useEffect, useState } from "react";
 import axios from "../../../../Assets/axios";
 import "../../../../Assets/css/admin/modal.css"
 
 const AddSubCategory=({cancelShowSubCatModal})=>{
-    const input=(e)=>{
+const [category,setCategory]=useState({});
+const [subCate,setSubCate]=useState({
+    name:''
+});
+const {subCateName} =subCate;
+
+const onInputChange=(e)=>{
+    setSubCate({...subCate,[e.target.name]: e.target.value})
+};
+    const getCategory=async()=>{
+        try {
+            var catId=sessionStorage.getItem("CatId");
+            var res = await axios.get(`/ticketCategoryById/${catId}`);
+            console.log("working get category");
+            setCategory(res.data);
+        } catch (error) {
+            
+        }
+    }
+    useEffect(()=>{
+        getCategory();
+    },[]);
+
+    const handleAddSubCat=async(e)=>{
+        try {
+            var tCateId=e.target.value;
+            await axios.post(`/addTicketSubCategories/${tCateId}`,subCate);
+            window.alert(`added successfully`);
+        } catch (error) {
+            
+        }
        
     }
 
@@ -19,16 +50,16 @@ const AddSubCategory=({cancelShowSubCatModal})=>{
                         <div className="form" id="addCategory">
 
                          <div class="form-group mb-2">
-                                <input name="" class="form-control"  disabled="disabled" placeholder=" category name" 
-                                       value={""} id="categoryName" type="text" required/>
+                                <input name="catName" class="form-control"  disabled="disabled" placeholder=" category name" 
+                                       value={category.name} id="categoryName" type="text" required/>
                             </div>
 
                             <div class="form-group mb-2">
-                                <input name="" class="form-control" placeholder=" Enter SubCategory title to add"  id="SubcategoryName" type="text" required/>
+                                <input name="subCateName" value={subCateName} onChange={(e)=>onInputChange(e)} class="form-control" placeholder=" Enter SubCategory title to add"  type="text" required/>
                             </div>
 
                             <div class="form-group text-left">
-                                <button  class="btn btn-success btn-block" onClick={()=>(input())}> Add  </button>
+                                <button  class="btn btn-success btn-block" value={category.id} onClick={(e)=>(handleAddSubCat(e))}> Add  </button>
                                 <button  class="m-2 btn btn-danger btn-block" onClick={cancelShowSubCatModal}> Back  </button>
                             </div>
 

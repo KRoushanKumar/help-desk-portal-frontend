@@ -55,7 +55,7 @@ const EditCategory = ({cancelEditCateModal}) => {
                             <div className="form" id="addCategory">
 
                                 <div class="form-group mb-2">
-                                    <input name="id" value={catData.id}  onChange={(e)=>onInputChange(e)} class="form-control" disabled="disabled" type="text" required />
+                                    <input name="id" value={`Category Id: ${catData.id}`}  onChange={(e)=>onInputChange(e)} class="form-control" disabled="disabled" type="text" required />
                                 </div>
                                 <div class="form-group mb-2">
                                     <input name="name" value={name} onChange={(e)=>onInputChange(e)} class="form-control" placeholder={catData.name}  type="text" required />

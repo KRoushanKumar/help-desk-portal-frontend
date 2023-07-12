@@ -58,10 +58,10 @@ const EditSubCategory = ({cancelSubCatEditModal}) => {
                             <div className="form" id="addCategory">
 
                                 <div class="form-group mb-2">
-                                    <input name="catId" value={CatId}  onChange={(e)=>onInputChange(e)} class="form-control" disabled="disabled" type="text" required />
+                                    <input name="catId" value={`Category id: ${CatId}`}  onChange={(e)=>onInputChange(e)} class="form-control" disabled="disabled" type="text" required />
                                 </div>
                                 <div class="form-group mb-2">
-                                    <input name="subCatId" value={subCatData.id}  onChange={(e)=>onInputChange(e)} class="form-control" disabled="disabled"  type="text" required />
+                                    <input name="subCatId" value={`SubCategory Id : ${subCatData.id}`}  onChange={(e)=>onInputChange(e)} class="form-control" disabled="disabled"  type="text" required />
                                 </div>
 
                                 <div class="form-group mb-2">
