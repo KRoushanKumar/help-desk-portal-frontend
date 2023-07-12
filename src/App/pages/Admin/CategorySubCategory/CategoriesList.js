@@ -55,6 +55,7 @@ const CategoriesList = (props) => {
            try {
                 axios.delete(`/deleteCategory/${ticketId}`)
                 console.log("deleted");
+                alert("deleted");
             } catch (error) {
                  setIsError(error.message);
             }
@@ -104,7 +105,7 @@ const CategoriesList = (props) => {
                                 <td>{categoryget.name}</td>
 
                                 <td>
-                                    <Link to="" style={{ marginRight: "10px" }} className='btn btn-info dropdown' onClick={()=>(ShowSubCtgry(categoryget))} >View Subcategories</Link>
+                                    <button to="" style={{ marginRight: "10px" }} className='btn btn-info' onClick={()=>(ShowSubCtgry(categoryget))} >View Subcategories</button>
                                     <button style={{ marginRight: "10px" }}  value={categoryget.id} className='btn btn-info' onClick={(e)=>handleEditCatModal(e)} >Edit</button>
                                     {showEditCategory && <EditCategory cancelEditCateModal={cancelEditCateModal}/>}
                                     <button className='btn btn-danger' value={categoryget.id} id="deleteCate" onClick={(e)=>handleDelete(e)}>Delete</button>

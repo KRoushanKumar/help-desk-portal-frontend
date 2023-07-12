@@ -6,11 +6,9 @@ const EditSubCategory = ({cancelSubCatEditModal}) => {
     const [isError,setIsError]=useState("");
     const CatId=sessionStorage.getItem("CatId");
     const [subCatTicket,setSubCatTicket]=useState({
-        catId:"",
-        subCatId:"",
-        subCatName:""
+        name:""
     });
-    const {catId,subCatId,subCatName}=subCatTicket;
+    const {name}=subCatTicket;
     
     const onInputChange=(e)=>{
         setSubCatTicket({...subCatTicket,[e.target.name]: e.target.value});
@@ -20,9 +18,10 @@ const EditSubCategory = ({cancelSubCatEditModal}) => {
         try {
             var ticSubId=e.target.value;
             console.log(ticSubId);
+            alert(`Edit `+subCatTicket.name)
            await axios.put(`/updateSubCateTic/${ticSubId}`,subCatTicket);
             console.log("working");
-            // alert(`Add successful ${categories.name}`)
+             alert(`Edit successful`)
         } catch (error) {
             
         }
@@ -58,14 +57,14 @@ const EditSubCategory = ({cancelSubCatEditModal}) => {
                             <div className="form" id="addCategory">
 
                                 <div class="form-group mb-2">
-                                    <input name="catId" value={CatId}  onChange={(e)=>onInputChange(e)} class="form-control" disabled="disabled" type="text" required />
+                                    <input name="catId" value={`Category id: ${CatId}`}  onChange={(e)=>onInputChange(e)} class="form-control" disabled="disabled" type="text" required />
                                 </div>
                                 <div class="form-group mb-2">
-                                    <input name="subCatId" value={subCatData.id}  onChange={(e)=>onInputChange(e)} class="form-control" disabled="disabled"  type="text" required />
+                                    <input name="subCatId" value={`SubCategory Id : ${subCatData.id}`}  onChange={(e)=>onInputChange(e)} class="form-control" disabled="disabled"  type="text" required />
                                 </div>
 
                                 <div class="form-group mb-2">
-                                    <input name="subCatName" value={subCatName}  onChange={(e)=>onInputChange(e)}  placeholder={subCatData.name} class="form-control" type="text" required />
+                                    <input name="name" value={name}  onChange={(e)=>onInputChange(e)}  placeholder={subCatData.name} class="form-control" type="text" required />
                                 </div>
 
                                 <div class="form-group text-left">

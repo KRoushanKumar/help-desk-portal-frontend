@@ -5,8 +5,10 @@ const TrackComplaints = () => {
     const [queryTicket, setTicket] = useState([]);
     const [iserror, setError] = useState("");
     const [showSolutionModal,setShowSolutionModal]= useState(false);
+    const [ticketId,setTicketId] = useState(0);
 
-    const viewSolution=()=>{
+    const viewSolution=(ticketId)=>{
+        setTicketId(ticketId);
         setShowSolutionModal(true);
 
     }
@@ -96,17 +98,18 @@ const TrackComplaints = () => {
 
                                                     </td>
                                     <td>
-                                    <button className='btn btn-dark' onClick={() => viewSolution()}>View</button>
-                                    {showSolutionModal && <ShowQuerySolutionModal cancelShowQuerySolutionModal={closeSolutionModal} />}
+                                    <button className='btn btn-dark' id={"btnSolView"+ticket.id} onClick={() => viewSolution(ticket.id)}>View</button>
+                                    
                                     </td>
                                 </tr>
                             </>
                         ))
                     }
+                    
                     <tr></tr>
                 </tbody>
             </table>
-
+            {showSolutionModal && <ShowQuerySolutionModal cancelShowQuerySolutionModal={closeSolutionModal} ticketId={ticketId} />}
 
 
         </div>
