@@ -20,7 +20,7 @@ const EditSubCategory = ({cancelSubCatEditModal}) => {
         try {
             var ticSubId=e.target.value;
             console.log(ticSubId);
-           await axios.put(`/updateSubCateTic/${ticSubId}`,subCatTicket.name);
+           await axios.put(`/updateSubCateTic/${ticSubId}`,subCatTicket);
             console.log("working");
             // alert(`Add successful ${categories.name}`)
         } catch (error) {

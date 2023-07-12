@@ -32,11 +32,11 @@ const ViewSubCategories=(props)=>{
     const cancelSubCatEditModal=()=>{
         setShowSubCatEdit(false);
     }
-    const handleDelete = () => {
-      
-        if (window.confirm('Do you want to Delete')) {
+    const handleDelete = async(e) => {
+      var subCatId=e.target.value;
+        if (window.confirm(`Do you want to Delete/${subCatId}`)) {
             try {
-                axios.delete("/deleteCategory")
+                await axios.delete(`/deleteSubCateTic/${subCatId}`)
                 console.log("deleted");
             } catch (error) {
                 setIsError(error.message);
@@ -101,7 +101,7 @@ const ViewSubCategories=(props)=>{
                                     {
                                         showSubCatEdit && <EditSubCategory cancelSubCatEditModal={cancelSubCatEditModal}/>
                                     }
-                                    <button className='btn btn-danger' onClick={handleDelete} >Delete</button>
+                                    <button className='btn btn-danger' value={subCategory.id} onClick={(e)=>handleDelete(e)} >Delete</button>
                                 </td>
                             </tr>
                             ))
