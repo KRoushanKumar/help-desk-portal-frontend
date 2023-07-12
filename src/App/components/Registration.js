@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../Assets/css/style.css';
-import signup from '../../Assets/images/signup-image.jpg'
+import signup from '../../Assets/images/signup-image.png';
 import {
      FaUsers,FaUser,FaLock,
 } from "react-icons/fa";
@@ -185,7 +185,7 @@ function registration() {
                                     </div>
                                 </div>
                             </div>
-                            <div class="signup-image">
+                            <div class="signup-image"  style={{marginTop:"-20px"}}>
                                 <figure><img src={signup} alt="sing up"></img></figure>
                                 <Link to="/login" class="signup-image-link">I am already member</Link>
                             </div>

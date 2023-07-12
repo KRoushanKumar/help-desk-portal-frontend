@@ -1,5 +1,5 @@
 import React from 'react'
-import signin from '../../Assets/images/signin-image.jpg'
+import signin from '../../Assets/images/signup-image.png'
 //In react-router-dom v6 useHistory() is replaced by useNavigate().
 import { Link,useNavigate  } from 'react-router-dom';
 import Axois from 'axios';
@@ -54,7 +54,7 @@ function Login() {
             <div class="sign-in">
                     <div class="container">
                         <div class="signin-content">
-                            <div class="signin-image">
+                            <div class="signin-image" style={{marginTop:"-20px"}}>
                                 <figure><img src={signin} alt="sing up "></img></figure>
                                 <Link to="/" class="signup-image-link">Create an account</Link>
                             </div>

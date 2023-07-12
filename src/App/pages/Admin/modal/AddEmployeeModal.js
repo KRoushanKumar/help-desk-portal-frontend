@@ -13,17 +13,58 @@ const AddEmployeeModal=({closeAddEmpModal}) => {
         email:"",
         password:"",
     });
+
+    const [employeeError,setEmployeeError]=useState({
+        userName:"",
+        firstName:"",
+        lastName:"",
+        email:"",
+        password:"",
+    });
+
     const {userName,firstName,lastName,email,password}=employee;
+
+    const [userNameError,setuserNameError]=useState("");
 
     const onInputChange=(e)=>{
         setEmployee({...employee,[e.target.name]: e.target.value})
     };
 
     console.log("addEmployee fn called");
+    const clear = ()=>{
+        setEmployee({
+            userName:"",
+            firstName:"",
+            lastName:"",
+            email:"",
+            password:"",
+        })
+    }
+    // validation start
+    const validation=()=>{
+        if(userName==""){
+            setEmployee({
+                userName:"Invalid",
+                //firstName:"",
+                //lastName:"",
+               // email:"",
+               // password:"",
+            })
+        }
+    }
+    // validation end
+
 
     const saveEmployee= async(e)=>{
         try {
+
+            if(userName===""){
+                setuserNameError("invalid")
+                document.getElementById("userName").style.borderColor="red";
+            }
+
             const res=await axios.post(`/addEmployee/${sessionStorage.getItem("UserID")}`,employee)
+            clear();
             console.log(res.data);
         } catch (error) {
             setError(error.message)
@@ -40,13 +81,19 @@ const AddEmployeeModal=({closeAddEmpModal}) => {
             
                 <div class="card ">
                     <article class="card-body">
-
+                    
                         <h4 class="card-title  text-dark text-center rounded">Add Employee</h4>
+                        
                         <hr style={{ backgroundColor: "red" }} />
+                        <span  class="danger" style={{color: "red"}} >{userNameError}</span>
                         <div className="form">
                             <div class="form-group">
-                                <input name="userName" onChange={(e)=> onInputChange(e)} value={userName} class="form-control" placeholder="User name" type="text" required />
+                                <input name="userName" id="userName"  onChange={(e)=> onInputChange(e)} value={userName} class="form-control" placeholder="User name" type="text" required />
+                                
                             </div>
+                            
+                            
+                            
                             <div class="form-group">
                                 <input name="firstName" onChange={(e)=> onInputChange(e)} value={firstName} class="form-control" placeholder="First name" type="text" required />
                             </div>
@@ -68,6 +115,7 @@ const AddEmployeeModal=({closeAddEmpModal}) => {
                     </article>
 
                 </div>
+                
             </div>
         </div>
 
