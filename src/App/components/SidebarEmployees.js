@@ -6,7 +6,7 @@ import {
     FaTh, FaThList, FaUserAlt,
 
 } from "react-icons/fa";
-import { MdNoteAlt, MdOutlineAddCircleOutline, MdSearch } from 'react-icons/md';
+import { MdLogout, MdNoteAlt, MdOutlineAddCircleOutline, MdSearch } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 
 const SidebarEmployees = ({children}) => {
@@ -39,6 +39,11 @@ const SidebarEmployees = ({children}) => {
             path:"/Employee/raiseComplaints",
             name:"Raise Complaints",
             icon:<MdNoteAlt/>
+        },
+        {
+            path:"/",
+            name:"Log Out",
+            icon:<MdLogout/>
         },
     ]
     return (
