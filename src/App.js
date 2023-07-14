@@ -5,10 +5,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import H from './App/pages/home'
 
 import Dashboard from "./App/pages/Admin/Dashboard";
-import Comments from "./App/pages/Admin/Comments";
+// import Comments from "./App/pages/Admin/Comments";
 import Employees from "./App/pages/Admin/Employees";
 import SearchTickets from "./App/pages/Admin/SearchTickets";
-import Tickets from "./App/pages/Admin/Tickets";
+// import Tickets from "./App/pages/Admin/Tickets";
 import About from "./App/pages/Admin/About";
 import Login from './App/components/Login'
 import Admin from './App/pages/Admin/AdminPage';
@@ -17,12 +17,12 @@ import Admin from './App/pages/Admin/AdminPage';
 import Employee from "./App/pages/Employees/Employee";
 import DashboardEmp from "./App/pages/Employees/DashboardEmp";
 import AboutEmp from "./App/pages/Employees/AboutEmp";
-import CategoriesEmp from "./App/pages/Employees/CategoriesEmp";
+// import CategoriesEmp from "./App/pages/Employees/CategoriesEmp";
 import RaiseComplaints from "./App/pages/Employees/RaiseComplaints";
 import TrackComplaints from "./App/pages/Employees/TrackComplaints";
 // import AddEmployeeModal from "./App/pages/Admin/AddEmployeeModal";
 import CategoriesPage from "./App/pages/Admin/CategorySubCategory/CategoriesPage";
-import MyComplaints from "./App/pages/Employees/MyComplaints"
+// import MyComplaints from "./App/pages/Employees/MyComplaints"
 // import UpdateEmployeeModal from "./App/pages/Admin/UpdateEmployeeModal";
 function App() {
 
@@ -47,16 +47,16 @@ function App() {
                     <Route path="categoriesPage" element={<CategoriesPage />}>
           
                     </Route>
-                    <Route path="tickets" element={<Tickets />} />
-                    <Route path="comments" element={<Comments />} />
+                    {/* <Route path="tickets" element={<Tickets />} /> */}
+                    {/* <Route path="comments" element={<Comments />} /> */}
                 </Route>
                 <Route path="/Employee" element ={<Employee/>}>
                     <Route path="dashboard" element={<DashboardEmp/>} />
                     <Route path="about" element={<AboutEmp/>} />
-                    <Route path="categories" element={<CategoriesEmp />} />
+                    {/* <Route path="categories" element={<CategoriesEmp />} /> */}
                     <Route path="raisecomplaints" element={<RaiseComplaints />} />
                     <Route path="trackcomplaints" element={<TrackComplaints />} />
-                    <Route path="mycomplaints" element={<MyComplaints/>}/>
+                    {/* <Route path="mycomplaints" element={<MyComplaints/>}/> */}
                 </Route>
           </Routes>
       </Router>

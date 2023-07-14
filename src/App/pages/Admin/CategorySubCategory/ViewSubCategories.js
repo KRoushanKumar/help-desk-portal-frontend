@@ -4,36 +4,36 @@ import axios from "../../../../Assets/axios";
 import AddSubCategory from "./AddSubCategory";
 import EditSubCategory from "./EditSubCategory"
 
-const ViewSubCategories=(props)=>{
+const ViewSubCategories = (props) => {
     const [subCategories, setSubCategories] = useState([]);
-    const [categryid,setCategryid]=useState(0);
+    const [categryid, setCategryid] = useState(0);
     const [isError, setIsError] = useState("");
-    const [showSubCatAdd,setShowSubCatAdd]=useState(false);
-    const [showSubCatEdit,setShowSubCatEdit]=useState(false);
-    
-    const setSession=(subCatId)=>{
-        sessionStorage.setItem("subCatId",subCatId);
+    const [showSubCatAdd, setShowSubCatAdd] = useState(false);
+    const [showSubCatEdit, setShowSubCatEdit] = useState(false);
+
+    const setSession = (subCatId) => {
+        sessionStorage.setItem("subCatId", subCatId);
     }
-    const removeSession=(subCatId)=>{
+    const removeSession = (subCatId) => {
         sessionStorage.removeItem("subCatId");
     }
-    const showSubCatModal=()=>{
+    const showSubCatModal = () => {
         setShowSubCatAdd(true);
     }
-    const cancelShowSubCatModal=()=>{
+    const cancelShowSubCatModal = () => {
         setShowSubCatAdd(false);
     }
-    const showSubCatEditModal=(e)=>{
+    const showSubCatEditModal = (e) => {
         console.log("show sub cat edit modal working");
         setShowSubCatEdit(true);
         console.log(e.target.value);
         setSession(e.target.value);
     }
-    const cancelSubCatEditModal=()=>{
+    const cancelSubCatEditModal = () => {
         setShowSubCatEdit(false);
     }
-    const handleDelete = async(e) => {
-      var subCatId=e.target.value;
+    const handleDelete = async (e) => {
+        var subCatId = e.target.value;
         if (window.confirm(`Do you want to Delete/${subCatId}`)) {
             try {
                 await axios.delete(`/deleteSubCateTic/${subCatId}`)
@@ -59,27 +59,25 @@ const ViewSubCategories=(props)=>{
             setIsError(error.message);
         }
     }
-  
-   
-   const showCtrgryList = ()=>
-   {
+
+
+    const showCtrgryList = () => {
         props.showSubCategories(false);
         props.showCtgryList(true);
         props.showAddSubCategories(false);
-   }
-    return(
+    }
+    return (
         <div className='container-fluid'>
-            <h2 className='text-center text-primary'>SubCategories List</h2>
-            <hr style={{color:"red"}}/>
+            <h1 class="text-center text-light mt-4 p-2" style={{ fontWeight: 400, background: `linear-gradient(to right, rgba(10, 24, 2, 1), rgba(0, 133, 255, 11))` }}>SubCategories List</h1>
             <div>
                 <button className='btn btn-info mb-4' onClick={showSubCatModal}>+ Add SubCategories</button>
-                {showSubCatAdd  && <AddSubCategory cancelShowSubCatModal={cancelShowSubCatModal}/>}
+                {showSubCatAdd && <AddSubCategory cancelShowSubCatModal={cancelShowSubCatModal} />}
 
-                
-                <button to="Admin/categoriesPage" className='btn btn-back mb-4'  onClick={()=>(showCtrgryList())} >Back</button>
+
+                <button to="Admin/categoriesPage" style={{ marginLeft: "5px"}} className='btn btn-back mb-4 btn-primary ' onClick={() => (showCtrgryList())} >Back</button>
             </div>
-           <div className="btn btn-dark"> Category Name: {props.ticCtgryName}</div>
-            <div className='row'>
+            <div className="btn btn-dark" > Category Name: {props.ticCtgryName}</div>
+            <div className='row container'>
                 <table className='table table-striped table-bordered'>
                     <thead>
                         <tr>
@@ -89,24 +87,24 @@ const ViewSubCategories=(props)=>{
                         </tr>
                     </thead>
                     <tbody>
-                       {
-                        subCategories.map((subCategory) =>
+                        {
+                            subCategories.map((subCategory) =>
                             (<tr>
 
                                 <td>{subCategory.id}</td>
                                 <td>{subCategory.name}</td>
 
                                 <td>
-                                    <button style={{ marginRight: "10px" }} value={subCategory.id} className='btn btn-info'  onClick={(e)=>showSubCatEditModal(e)}>Edit</button>
+                                    <button style={{ marginRight: "10px" }} value={subCategory.id} className='btn btn-info' onClick={(e) => showSubCatEditModal(e)}>Edit</button>
                                     {
-                                        showSubCatEdit && <EditSubCategory cancelSubCatEditModal={cancelSubCatEditModal}/>
+                                        showSubCatEdit && <EditSubCategory cancelSubCatEditModal={cancelSubCatEditModal} />
                                     }
-                                    <button className='btn btn-danger' value={subCategory.id} onClick={(e)=>handleDelete(e)} >Delete</button>
+                                    <button className='btn btn-danger' value={subCategory.id} onClick={(e) => handleDelete(e)} >Delete</button>
                                 </td>
                             </tr>
                             ))
                         }
-                       
+
                     </tbody>
                 </table>
             </div>
