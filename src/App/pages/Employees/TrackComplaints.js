@@ -46,7 +46,8 @@ const TrackComplaints = () => {
                         <th>start date</th>
                         <th>end date</th>
                         <th>query</th>
-                        <th>solution</th>
+                        
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,6 +99,7 @@ const TrackComplaints = () => {
 
                                                     </td>
                                     <td>
+                                    <button className='btn btn-dark' id={"btnSolView"+ticket.id} onClick={() => viewSolution(ticket.id)}>View</button>
                                     <button className='btn btn-dark' id={"btnSolView"+ticket.id} onClick={() => viewSolution(ticket.id)}>View</button>
                                     
                                     </td>

@@ -50,19 +50,7 @@ const UpdateEmployeeModal = ({closeUpdateEmpModal}) => {
             console.log("calling getEmployeeApi function");
             getuserApi();
         }, [])
-        // const updateEmployee=(e)=>{
-        //     const first_name=document.getElementById('first_name').value;
-        //     const last_name =document.getElementById('last_name').value;
-        //     const email=document.getElementById('email').value;
-        //     console.log("badhai ho code run ho gaya");
-        //     // const res = axios.post(`/addEmployee/${sessionStorage.getItem("empId")}`,{firstname:first_name,lastName:last_name,email:email})
-        //     // .then(()=>{
-        //     //     sessionStorage.removeItem("empId");
-        //     //     navigate
-        //     // }).catch((error)=>{
-        //     //     console.log("error aya");
-        //     // });
-        // }
+        
     return (
         <div>
             <div className="container-fluid">
