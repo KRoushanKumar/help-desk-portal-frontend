@@ -68,7 +68,7 @@ const ViewSubCategories=(props)=>{
         props.showAddSubCategories(false);
    }
     return(
-        <div className='container-fluid'>
+        <div className='container p-5'>
             <h2 className='text-center text-primary'>SubCategories List</h2>
             <hr style={{color:"red"}}/>
             <div>

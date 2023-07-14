@@ -6,6 +6,7 @@ const TrackComplaints = () => {
     const [iserror, setError] = useState("");
     const [showSolutionModal,setShowSolutionModal]= useState(false);
     const [ticketId,setTicketId] = useState(0);
+    const [close,setClose] = useState(1);
 
     const viewSolution=(ticketId)=>{
         setTicketId(ticketId);
@@ -29,11 +30,22 @@ const TrackComplaints = () => {
 
     useEffect(() => {
         getTicket();
-    }, []);
+    }, [close]);
+
+    const closeQuery = async (ticketId)=>{
+        try {
+            const res = await axios.put(`/closeEmployeeQuery/${ticketId}`);
+            console.log(res.data);
+            setClose(close%10+1);
+        } catch (error) {
+            setError(error.message);
+        }
+    }
 
     return (
-        <div className='container-fluid m-4'>
+        <div className='container-fluid m-4' style={{width:"98%"}}>
             <h1 class="text-center text-light mt-5 p-2" style={{ fontWeight: 400, background: `linear-gradient(to right, rgba(10, 24, 2, 1), rgba(0, 133, 255, 11))` }}>My Complaints</h1>
+            <div style={{overflowY:"Auto", height:"72vh"}}>
             <table class="table table-hover">
                 <thead class="bg-dark text-light" >
                     <tr className='text-center'>
@@ -99,8 +111,8 @@ const TrackComplaints = () => {
 
                                                     </td>
                                     <td>
-                                    <button className='btn btn-dark' id={"btnSolView"+ticket.id} onClick={() => viewSolution(ticket.id)}>View</button>
-                                    <button className='btn btn-dark' id={"btnSolView"+ticket.id} onClick={() => viewSolution(ticket.id)}>View</button>
+                                    <button className='btn btn-info me-2' id={"btnSolView"+ticket.id} onClick={() => viewSolution(ticket.id)}><i class="bi bi-view-list"></i></button>
+                                    <button className='btn btn-danger me-2' id={"btnSolView"+ticket.id} onClick={() => closeQuery(ticket.id)}><i class="bi bi-x-circle"></i></button>
                                     
                                     </td>
                                 </tr>
@@ -112,7 +124,7 @@ const TrackComplaints = () => {
                 </tbody>
             </table>
             {showSolutionModal && <ShowQuerySolutionModal cancelShowQuerySolutionModal={closeSolutionModal} ticketId={ticketId} />}
-
+            </div>
 
         </div>
     );

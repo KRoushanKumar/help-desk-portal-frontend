@@ -6,7 +6,7 @@ import {
     FaTh, FaThList, FaUserAlt,
 
 } from "react-icons/fa";
-import { MdNoteAlt, MdOutlineAddCircleOutline, MdSearch } from 'react-icons/md';
+import { MdLogout, MdNoteAlt, MdOutlineAddCircleOutline, MdSearch } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 
 const SidebarEmployees = ({children}) => {
@@ -40,10 +40,15 @@ const SidebarEmployees = ({children}) => {
             name:"Raise Complaints",
             icon:<MdNoteAlt/>
         },
+        {
+            path:"/",
+            name:"Log Out",
+            icon:<MdLogout/>
+        },
     ]
     return (
         <div className='admin_container'>
-            <div style={{width: isOpen ? "300px" : "50px"}} className='sidebar'>
+            <div style={{width: isOpen ? "250px" : "50px"}} className='sidebar'>
                  <div className='top_section'>
                     <h1 style={{display: isOpen ? "block" : "none"}} className='logo'>Employee</h1>
                     <div style={{marginLeft: isOpen ? "50px" : "0px"}} className='bars'>
