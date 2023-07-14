@@ -9,6 +9,7 @@ const Categories = () => {
     const [st, setSt] = useState([]);
     const [isError, setIsError] = useState("");
     const [allEmpQuery, setAllEmpQuery] = useState([]);
+    const [updateShowSolution, setUpdateShowSolution] = useState(0);
 
 
 
@@ -87,7 +88,7 @@ const Categories = () => {
     useEffect(() => {
 
         getAllEmployeeQuery();
-    }, []);
+    }, [updateShowSolution]);
     const allEmployeeQuery = () => {
         getAllEmployeeQuery();
         document.getElementById("categories").value = 0;
@@ -103,7 +104,7 @@ const Categories = () => {
         var yyyy = today.getFullYear();
 
         today = yyyy +'-'+ mm + '-' + dd ;  
-        alert(soltion + " " + today);
+       // alert(soltion + " " + today);
 
         try {
             const res =  axios.post(`/addEmpQuerySolution/${id}`,
@@ -113,8 +114,12 @@ const Categories = () => {
                 
             });
             
-            if(res)
-            alert("New Solution sent.")
+            if(res){
+              setUpdateShowSolution(updateShowSolution%10+1);
+              alert("New Solution sent.")
+              document.getElementById("solutionInput"+id).value="";
+
+            }
             else
             {   
                 alert("Something worng!")
@@ -264,7 +269,7 @@ const Categories = () => {
                                                                         </div>
                                                                         <div class="modal-body p-2">
                                                                         {/* updated by Alok */}
-                                                                        <table class="table">
+                                                                        <table class="table table-hover " style={{height:"100px"}}>
                                                                             <thead className='text-info '>
                                                                                     <tr>
                                                                                         <th>Solution</th>
@@ -316,7 +321,7 @@ const Categories = () => {
                                                                                 
                                                                                 
                                                                                  
-                                                                                <input type="text" id={"solutionInput"+query.id} className='form-control' placeholder="Solution" required/>
+                                                                                <input type="text" id={"solutionInput"+query.id} className='form-control'  placeholder="Solution" required/>
                                                                                 </div> 
 
                                                                         </div>

@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from "../../../Assets/axios";
+import ShowQuerySolutionModal from '../Admin/modal/ShowQuerySolutionModal';
 const TrackComplaints = () => {
     const [queryTicket, setTicket] = useState([]);
     const [iserror, setError] = useState("");
+    const [showSolutionModal,setShowSolutionModal]= useState(false);
+    const [ticketId,setTicketId] = useState(0);
+
+    const viewSolution=(ticketId)=>{
+        setTicketId(ticketId);
+        setShowSolutionModal(true);
+
+    }
+    const closeSolutionModal = () => {
+        setShowSolutionModal(false);
+    }
+
     const getTicket = async () => {
         try {
             const res = await axios.get(`/AllEmployeeQuery/${sessionStorage.getItem('UserID')}`);
@@ -84,15 +97,19 @@ const TrackComplaints = () => {
                                                         </div>
 
                                                     </td>
-                                    <td><p className='btn btn-primary'>see</p></td>
+                                    <td>
+                                    <button className='btn btn-dark' id={"btnSolView"+ticket.id} onClick={() => viewSolution(ticket.id)}>View</button>
+                                    
+                                    </td>
                                 </tr>
                             </>
                         ))
                     }
+                    
                     <tr></tr>
                 </tbody>
             </table>
-
+            {showSolutionModal && <ShowQuerySolutionModal cancelShowQuerySolutionModal={closeSolutionModal} ticketId={ticketId} />}
 
 
         </div>

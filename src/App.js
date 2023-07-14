@@ -45,14 +45,10 @@ function App() {
                     </Route>
                     <Route path="searchTickets" element={<SearchTickets />} />
                     <Route path="categoriesPage" element={<CategoriesPage />}>
-                  
+          
                     </Route>
-
-                    
                     <Route path="tickets" element={<Tickets />} />
                     <Route path="comments" element={<Comments />} />
-                    
-
                 </Route>
                 <Route path="/Employee" element ={<Employee/>}>
                     <Route path="dashboard" element={<DashboardEmp/>} />
