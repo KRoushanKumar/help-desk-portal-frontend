@@ -181,8 +181,8 @@ const Categories = () => {
                 <main style={{ marginTop: "10px" }} className='mr-3'>
                     <div class="container-fluid   ">
 
-                        <div className='row border'>
-                            <div class="container-fluid">
+                        <div className='row border' >
+                            <div class="container-fluid" style={{overflowY:"Auto", height:"55vh"}}>
                                 <table class="table">
                                     <thead className='text-info '>
                                         <tr>

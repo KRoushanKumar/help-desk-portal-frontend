@@ -19,8 +19,9 @@ const TrackComplaints = () => {
     }, []);
 
     return (
-        <div className='container-fluid m-4'>
+        <div className='container-fluid m-4' style={{width:"98%"}}>
             <h1 class="text-center text-light mt-5 p-2" style={{ fontWeight: 400, background: `linear-gradient(to right, rgba(10, 24, 2, 1), rgba(0, 133, 255, 11))` }}>My Complaints</h1>
+            <div style={{overflowY:"Auto", height:"72vh"}}>
             <table class="table table-hover">
                 <thead class="bg-dark text-light" >
                     <tr className='text-center'>
@@ -92,6 +93,7 @@ const TrackComplaints = () => {
                     <tr></tr>
                 </tbody>
             </table>
+            </div>
 
 
 

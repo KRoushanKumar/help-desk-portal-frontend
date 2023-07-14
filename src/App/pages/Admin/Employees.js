@@ -69,7 +69,7 @@ const Employees = () => {
             </div>
 
             <h2 className='text-center p-3 text-white bg-info '>Employees List</h2>
-            <div className='row text-white'>
+            <div className='row text-white' style={{overflowY:"Auto", height:"65vh"}}>
                 <table className='table table-striped table-bordered'>
                     <thead>
                         <tr>
